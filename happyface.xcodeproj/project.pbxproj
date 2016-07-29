@@ -7,21 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE3BCD78B10E238807D8B01D /* Pods_happyface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18548EA076EEF1AFE58E6D33 /* Pods_happyface.framework */; };
 		DF2F38B01D33DCC700916E24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38AF1D33DCC700916E24 /* AppDelegate.swift */; };
-		DF2F38B21D33DCC700916E24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38B11D33DCC700916E24 /* ViewController.swift */; };
 		DF2F38B51D33DCC700916E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2F38B31D33DCC700916E24 /* Main.storyboard */; };
 		DF2F38B71D33DCC700916E24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF2F38B61D33DCC700916E24 /* Assets.xcassets */; };
 		DF2F38BA1D33DCC700916E24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2F38B81D33DCC700916E24 /* LaunchScreen.storyboard */; };
+		DF2F38C51D353C5600916E24 /* ListDiaryEntriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38C41D353C5600916E24 /* ListDiaryEntriesTableViewController.swift */; };
+		DF2F38C71D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38C61D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift */; };
+		DF2F38C91D353CBD00916E24 /* AddDiaryEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38C81D353CBD00916E24 /* AddDiaryEntryViewController.swift */; };
+		DF2F38D41D3547B000916E24 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38D31D3547B000916E24 /* Entry.swift */; };
+		DF2F38D61D3681D200916E24 /* EntryStatsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38D51D3681D200916E24 /* EntryStatsUIViewController.swift */; };
+		DF2F38D81D36974200916E24 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38D71D36974200916E24 /* RealmHelper.swift */; };
+		DF2F38E71D3B00E500916E24 /*  GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38E61D3B00E500916E24 /*  GraphViewController.swift */; };
+		DF2F38F21D4121BB00916E24 /* ListRoutineItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38F11D4121BB00916E24 /* ListRoutineItemsTableViewController.swift */; };
+		DF2F38F41D4121ED00916E24 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38F31D4121ED00916E24 /* AddItemViewController.swift */; };
+		DF2F38F61D41221400916E24 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38F51D41221400916E24 /* ProductInfoViewController.swift */; };
+		DF2F38F81D4123B500916E24 /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38F71D4123B500916E24 /* RoutineTableViewCell.swift */; };
+		DF2F38FC1D4140B800916E24 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38FB1D4140B800916E24 /* Routine.swift */; };
+		DF2F38FE1D4165C800916E24 /* ListHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38FD1D4165C800916E24 /* ListHistoryTableViewController.swift */; };
+		DF2F39001D41776D00916E24 /* RecoverProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */; };
+		DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */; };
+		DF379CFB1D493118004559A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF379CFA1D493118004559A5 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18548EA076EEF1AFE58E6D33 /* Pods_happyface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_happyface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		578C4BB7A8194C258A3B90D9 /* Pods-happyface.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-happyface.release.xcconfig"; path = "Pods/Target Support Files/Pods-happyface/Pods-happyface.release.xcconfig"; sourceTree = "<group>"; };
+		A5BD33A97151E969763D7F3B /* Pods-happyface.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-happyface.debug.xcconfig"; path = "Pods/Target Support Files/Pods-happyface/Pods-happyface.debug.xcconfig"; sourceTree = "<group>"; };
 		DF2F38AC1D33DCC700916E24 /* happyface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = happyface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2F38AF1D33DCC700916E24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF2F38B11D33DCC700916E24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DF2F38B41D33DCC700916E24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF2F38B61D33DCC700916E24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2F38B91D33DCC700916E24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF2F38BB1D33DCC700916E24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF2F38C41D353C5600916E24 /* ListDiaryEntriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDiaryEntriesTableViewController.swift; sourceTree = "<group>"; };
+		DF2F38C61D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryCellTableViewCell.swift; sourceTree = "<group>"; };
+		DF2F38C81D353CBD00916E24 /* AddDiaryEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDiaryEntryViewController.swift; sourceTree = "<group>"; };
+		DF2F38D31D3547B000916E24 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		DF2F38D51D3681D200916E24 /* EntryStatsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryStatsUIViewController.swift; sourceTree = "<group>"; };
+		DF2F38D71D36974200916E24 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		DF2F38E61D3B00E500916E24 /*  GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " GraphViewController.swift"; sourceTree = "<group>"; };
+		DF2F38F11D4121BB00916E24 /* ListRoutineItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListRoutineItemsTableViewController.swift; path = Routine/ListRoutineItemsTableViewController.swift; sourceTree = "<group>"; };
+		DF2F38F31D4121ED00916E24 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddItemViewController.swift; path = Routine/AddItemViewController.swift; sourceTree = "<group>"; };
+		DF2F38F51D41221400916E24 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductInfoViewController.swift; path = Routine/ProductInfoViewController.swift; sourceTree = "<group>"; };
+		DF2F38F71D4123B500916E24 /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutineTableViewCell.swift; path = Routine/RoutineTableViewCell.swift; sourceTree = "<group>"; };
+		DF2F38FB1D4140B800916E24 /* Routine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Routine.swift; path = Routine/Routine.swift; sourceTree = "<group>"; };
+		DF2F38FD1D4165C800916E24 /* ListHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListHistoryTableViewController.swift; path = Routine/ListHistoryTableViewController.swift; sourceTree = "<group>"; };
+		DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverProductViewController.swift; path = Routine/RecoverProductViewController.swift; sourceTree = "<group>"; };
+		DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveProductTableViewCell.swift; path = Routine/ArchiveProductTableViewCell.swift; sourceTree = "<group>"; };
+		DF379CFA1D493118004559A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = "Splash Screen/SplashViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +63,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3BCD78B10E238807D8B01D /* Pods_happyface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E2908BE7244EAC7AFBE62EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A5BD33A97151E969763D7F3B /* Pods-happyface.debug.xcconfig */,
+				578C4BB7A8194C258A3B90D9 /* Pods-happyface.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CE8E771307A4C8397CA12814 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18548EA076EEF1AFE58E6D33 /* Pods_happyface.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DF2F38A31D33DCC700916E24 = {
 			isa = PBXGroup;
 			children = (
 				DF2F38AE1D33DCC700916E24 /* happyface */,
 				DF2F38AD1D33DCC700916E24 /* Products */,
+				7E2908BE7244EAC7AFBE62EC /* Pods */,
+				CE8E771307A4C8397CA12814 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +108,69 @@
 		DF2F38AE1D33DCC700916E24 /* happyface */ = {
 			isa = PBXGroup;
 			children = (
+				DF379CF91D4930E3004559A5 /* Splash Screen */,
+				DF2F38F01D41218E00916E24 /* Routine */,
+				DF2F38D91D3962DB00916E24 /* Profile */,
+				DF2F38CA1D35450800916E24 /* Helpers */,
+				DF2F38C11D3537DE00916E24 /* Diary */,
 				DF2F38AF1D33DCC700916E24 /* AppDelegate.swift */,
-				DF2F38B11D33DCC700916E24 /* ViewController.swift */,
 				DF2F38B31D33DCC700916E24 /* Main.storyboard */,
 				DF2F38B61D33DCC700916E24 /* Assets.xcassets */,
 				DF2F38B81D33DCC700916E24 /* LaunchScreen.storyboard */,
 				DF2F38BB1D33DCC700916E24 /* Info.plist */,
 			);
 			path = happyface;
+			sourceTree = "<group>";
+		};
+		DF2F38C11D3537DE00916E24 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F38C41D353C5600916E24 /* ListDiaryEntriesTableViewController.swift */,
+				DF2F38C61D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift */,
+				DF2F38C81D353CBD00916E24 /* AddDiaryEntryViewController.swift */,
+				DF2F38D31D3547B000916E24 /* Entry.swift */,
+				DF2F38D51D3681D200916E24 /* EntryStatsUIViewController.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		DF2F38CA1D35450800916E24 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F38D71D36974200916E24 /* RealmHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		DF2F38D91D3962DB00916E24 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F38E61D3B00E500916E24 /*  GraphViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		DF2F38F01D41218E00916E24 /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F38F11D4121BB00916E24 /* ListRoutineItemsTableViewController.swift */,
+				DF2F38F31D4121ED00916E24 /* AddItemViewController.swift */,
+				DF2F38F51D41221400916E24 /* ProductInfoViewController.swift */,
+				DF2F38F71D4123B500916E24 /* RoutineTableViewCell.swift */,
+				DF2F38FB1D4140B800916E24 /* Routine.swift */,
+				DF2F38FD1D4165C800916E24 /* ListHistoryTableViewController.swift */,
+				DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */,
+				DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */,
+			);
+			name = Routine;
+			sourceTree = "<group>";
+		};
+		DF379CF91D4930E3004559A5 /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DF379CFA1D493118004559A5 /* SplashViewController.swift */,
+			);
+			name = "Splash Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF2F38BE1D33DCC700916E24 /* Build configuration list for PBXNativeTarget "happyface" */;
 			buildPhases = (
+				51EEB082F8C1E78AD34A3F83 /* [CP] Check Pods Manifest.lock */,
 				DF2F38A81D33DCC700916E24 /* Sources */,
 				DF2F38A91D33DCC700916E24 /* Frameworks */,
 				DF2F38AA1D33DCC700916E24 /* Resources */,
+				502CE6212F58D60C5CBA9DBA /* [CP] Embed Pods Frameworks */,
+				840D1A21298347C2B84DBA01 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +208,7 @@
 				TargetAttributes = {
 					DF2F38AB1D33DCC700916E24 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = YHC2C52Y6V;
 					};
 				};
 			};
@@ -130,13 +243,76 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		502CE6212F58D60C5CBA9DBA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-happyface/Pods-happyface-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51EEB082F8C1E78AD34A3F83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		840D1A21298347C2B84DBA01 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-happyface/Pods-happyface-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DF2F38A81D33DCC700916E24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF2F38B21D33DCC700916E24 /* ViewController.swift in Sources */,
+				DF2F38FE1D4165C800916E24 /* ListHistoryTableViewController.swift in Sources */,
+				DF2F38F21D4121BB00916E24 /* ListRoutineItemsTableViewController.swift in Sources */,
+				DF2F38FC1D4140B800916E24 /* Routine.swift in Sources */,
+				DF379CFB1D493118004559A5 /* SplashViewController.swift in Sources */,
+				DF2F39001D41776D00916E24 /* RecoverProductViewController.swift in Sources */,
+				DF2F38D41D3547B000916E24 /* Entry.swift in Sources */,
+				DF2F38D61D3681D200916E24 /* EntryStatsUIViewController.swift in Sources */,
+				DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */,
+				DF2F38C51D353C5600916E24 /* ListDiaryEntriesTableViewController.swift in Sources */,
+				DF2F38C91D353CBD00916E24 /* AddDiaryEntryViewController.swift in Sources */,
+				DF2F38F41D4121ED00916E24 /* AddItemViewController.swift in Sources */,
+				DF2F38D81D36974200916E24 /* RealmHelper.swift in Sources */,
+				DF2F38E71D3B00E500916E24 /*  GraphViewController.swift in Sources */,
+				DF2F38F61D41221400916E24 /* ProductInfoViewController.swift in Sources */,
 				DF2F38B01D33DCC700916E24 /* AppDelegate.swift in Sources */,
+				DF2F38F81D4123B500916E24 /* RoutineTableViewCell.swift in Sources */,
+				DF2F38C71D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,23 +423,33 @@
 		};
 		DF2F38BF1D33DCC700916E24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5BD33A97151E969763D7F3B /* Pods-happyface.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = happyface/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.happyface;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		DF2F38C01D33DCC700916E24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 578C4BB7A8194C258A3B90D9 /* Pods-happyface.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = happyface/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.happyface;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -286,6 +472,7 @@
 				DF2F38C01D33DCC700916E24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

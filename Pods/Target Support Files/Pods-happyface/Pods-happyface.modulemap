@@ -1,0 +1,6 @@
+framework module Pods_happyface {
+  umbrella header "Pods-happyface-umbrella.h"
+
+  export *
+  module * { export * }
+}
