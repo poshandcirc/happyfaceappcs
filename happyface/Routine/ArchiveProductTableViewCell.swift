@@ -10,6 +10,7 @@ import UIKit
 
 class ArchiveProductTableViewCell: UITableViewCell {
     @IBOutlet weak var archiveProductLabel: UILabel!
+    @IBOutlet weak var archiveProdIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

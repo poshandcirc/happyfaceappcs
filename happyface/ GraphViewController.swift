@@ -143,10 +143,11 @@ class GraphViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Percent Happy")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: nil)
         let chartData = BarChartData(xVals: datesArray, dataSet: chartDataSet)
         barChartView.data = chartData
-        
+    
+       chartDataSet.colors = [UIColor(red: 84/255, green: 194/255, blue: 251/255, alpha: 1)]
         
     }
     

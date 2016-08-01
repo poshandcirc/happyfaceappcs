@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Realm
 
 class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var productNameLabel: UILabel!
@@ -16,14 +17,12 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var nightLabel: UILabel!
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var iconPicker: UIPickerView!
-    var iconNumVar: Int = 0
+    @IBOutlet weak var rXImage: UIImageView!
 
     var routine: Routine?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        iconPicker.delegate = self
         // Do any additional setup after loading the view.
     }
     @IBAction func backAction(sender: AnyObject) {
@@ -46,13 +45,20 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
             if routine.selectiveUse == true {
                 selectLabel.textColor = UIColor.blackColor()
             }
+            if routine.isPrescription == true {
+                rXImage.image = UIImage(named: "rX")
+            }
+            else if routine.isPrescription == false {
+                rXImage.image = UIImage(named: "heart")
+            }
             infoLabel.text = "\(routine.additionalNotes)"
         }
     }
+}
     
     // MARK: UIPickerViewDataSource
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+/*    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
@@ -103,12 +109,19 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
         }
         return myImageView
     }
-}
-/*    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        routine?.iconNum = iconNumVar
+
+   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    
+    let realm = RLMRealm.defaultRealm()
+    realm.beginWriteTransaction()
+    if row%2 == 0 {
+    routine?.iconNum = row
+    }
+
+    
         // do something with selected row
-    } /*
+    }
+} */
 
     /*    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -124,4 +137,4 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-*/*/
+

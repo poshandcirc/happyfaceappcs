@@ -15,18 +15,24 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var nightSwitch: UISwitch!
     @IBOutlet weak var selectiveSwitch: UISwitch!
     @IBOutlet weak var infoTextField: UITextField!
+    @IBOutlet weak var prescriptControl: UISegmentedControl!
  
 
     var morningBool: Bool = false
     var middayBool: Bool = false
     var nightBool: Bool = false
     var selectBool: Bool = false
+    var prescriptBool: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,6 +77,18 @@ class AddItemViewController: UIViewController {
         }
     }
     
+    @IBAction func isPrescript(sender: UISegmentedControl) {
+        switch prescriptControl.selectedSegmentIndex
+        {
+        case 0:
+            prescriptBool = true
+        case 1:
+            prescriptBool = false
+        default:
+            break
+        }
+    }
+    
     @IBAction func saveProduct(sender: UIButton) {
         let routine = Routine()
         routine.morningUse = morningBool
@@ -80,6 +98,7 @@ class AddItemViewController: UIViewController {
         routine.currentUse = true
         routine.additionalNotes = infoTextField.text!
         routine.itemName = productNameTextField.text!
+        routine.isPrescription = prescriptBool
         RealmHelper.addRoutine(routine)
         print("is this working")
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -89,7 +108,8 @@ class AddItemViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-    
+// http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+// http://stackoverflow.com/questions/28813339/move-a-view-up-only-when-the-keyboard-covers-an-input-field
 
     /*
     // MARK: - Navigation

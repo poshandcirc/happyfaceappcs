@@ -43,6 +43,7 @@ class RealmHelper {
         }
     }
     
+    
     static func deleteRoutine(routine: Routine) {
         let realm = try! Realm()
         try! realm.write() {

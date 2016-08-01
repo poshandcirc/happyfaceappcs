@@ -32,7 +32,7 @@ class EntryStatsUIViewController: UIViewController {
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.LongStyle
             let entryDate = entry.date
-            timeLabel.text = formatter.stringFromDate(entryDate)
+            timeLabel.text = formatter.stringFromDate(entryDate).capitalizedString
             acneStat.text = "\(entry.acneScale)"
             drynessStat.text = "\(entry.drynessScale)"
             oilinessStat.text = "\(entry.oilinessScale)"

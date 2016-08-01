@@ -36,6 +36,27 @@ class ListHistoryTableViewController: UITableViewController {
         let row = indexPath.row
         let routine = routines[row]
         cell.archiveProductLabel.text = routine.itemName
+        if routine.isPrescription == true {
+            cell.archiveProdIcon.image = UIImage(named: "rX")
+        }
+        else if cell.archiveProductLabel.text!.uppercaseString.containsString("EYE") || cell.archiveProductLabel.text!.uppercaseString.containsString("LASH") {
+            cell.archiveProdIcon.image = UIImage(named: "eye")
+        }
+        else if cell.archiveProductLabel.text!.uppercaseString.containsString("LIP") || cell.archiveProductLabel.text!.uppercaseString.containsString("MOUTH") {
+            cell.archiveProdIcon.image = UIImage(named: "lips")
+        }
+        else if (routine.morningUse == true) && (routine.nightUse == false) {
+            cell.archiveProdIcon.image = UIImage(named: "AM")
+        }
+        else if (routine.nightUse == true) && (routine.morningUse == false) {
+            cell.archiveProdIcon.image = UIImage(named: "PM")
+        }
+        else if routine.selectiveUse == true {
+            cell.archiveProdIcon.image = UIImage(named: "SOS")
+        }
+        else {
+            cell.archiveProdIcon.image = UIImage(named: "heart")
+        }
         return cell
     }
     

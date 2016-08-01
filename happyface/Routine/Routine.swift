@@ -17,4 +17,6 @@ class Routine: Object {
     dynamic var selectiveUse = false
     dynamic var additionalNotes = ""
     dynamic var currentUse = true
+    dynamic var isPrescription = false
+    dynamic var iconNum = 0
 }

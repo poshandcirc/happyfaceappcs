@@ -9,6 +9,7 @@
 import UIKit
 import Realm
 import RealmSwift
+import Foundation
 
 class ListRoutineItemsTableViewController: UITableViewController {
     var currentRoutineCount: Int = 0
@@ -36,19 +37,30 @@ class ListRoutineItemsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentRoutineCount
+        return routines.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+/*    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath.row)
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            let realm = RLMRealm.defaultRealm()
-            realm.beginWriteTransaction()
-            routines[indexPath.row].currentUse = false
+            if RealmHelper.retrieveRoutine().count != 0 {
+            RealmHelper.deleteRoutine(routines[indexPath.row])
+            routines = RealmHelper.retrieveRoutine()
+            }
+        }
+    } */
+    
+override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+           let realm = RLMRealm.defaultRealm()
+        realm.beginWriteTransaction()
+        routines[indexPath.row].currentUse = false
             routines = RealmHelper.retrieveCurrentRoutine()
+        try! realm.commitWriteTransaction()
         }
     }
     
@@ -57,7 +69,50 @@ class ListRoutineItemsTableViewController: UITableViewController {
         let row = indexPath.row
         let routine = routines[row]
         cell.productNameLabel.text = routine.itemName
-        cell.prodIcon.image = UIImage(named: "heart")
+        if routine.isPrescription == true {
+            cell.prodIcon.image = UIImage(named: "rX")
+        }
+        else if cell.productNameLabel.text!.uppercaseString.containsString("EYE") || cell.productNameLabel.text!.uppercaseString.containsString("LASH") {
+            cell.prodIcon.image = UIImage(named: "eye")
+        }
+        else if cell.productNameLabel.text!.uppercaseString.containsString("LIP") || cell.productNameLabel.text!.uppercaseString.containsString("MOUTH") {
+            cell.prodIcon.image = UIImage(named: "lips")
+        }
+        else if (routine.morningUse == true) && (routine.nightUse == false) {
+            cell.prodIcon.image = UIImage(named: "AM")
+        }
+        else if (routine.nightUse == true) && (routine.morningUse == false) {
+            cell.prodIcon.image = UIImage(named: "PM")
+        }
+        else if routine.selectiveUse == true {
+            cell.prodIcon.image = UIImage(named: "SOS")
+        }
+        else {
+            cell.prodIcon.image = UIImage(named: "heart")
+        }
+        
+        /*
+        if routine.iconNum == 2 {
+        cell.prodIcon.image = UIImage(named: "AM")
+        }
+        else if routine.iconNum == 4 {
+            cell.prodIcon.image = UIImage(named: "PM")
+        }
+        else if routine.iconNum == 6 {
+            cell.prodIcon.image = UIImage(named: "rX")
+        }
+        else if routine.iconNum == 8 {
+            cell.prodIcon.image = UIImage(named: "eye")
+        }
+        else if routine.iconNum == 10 {
+            cell.prodIcon.image = UIImage(named: "SOS")
+        }
+        else if routine.iconNum == 12 {
+            cell.prodIcon.image = UIImage(named: "lips")
+        }
+        else {
+            cell.prodIcon.image = UIImage(named: "heart")
+        } */
         return cell
     }
     
