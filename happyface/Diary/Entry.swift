@@ -18,4 +18,5 @@ class Entry: Object {
     dynamic var routineStreak = 0
     dynamic var date = NSDate()
     dynamic var isEmpty = false
+    dynamic var name = ""
 }

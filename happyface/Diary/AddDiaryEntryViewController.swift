@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Realm
 
 class AddDiaryEntryViewController: UIViewController {
     @IBOutlet weak var acneSlider: UISlider!
@@ -89,7 +90,7 @@ class AddDiaryEntryViewController: UIViewController {
          //   }
  //       if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateA.isEqualToDate(dateB) == false)) {
         if dateAString == dateBString {
-            let alert = UIAlertController(title: "Sorry!", message: "For the best results, you can only add one diary entry per day. Please delete the initial entry if you would like to update today's stats.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Sorry!", message: "For the best results, you should only add one diary entry per day. Please delete the initial entry if you would like to update today's stats.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -102,6 +103,7 @@ class AddDiaryEntryViewController: UIViewController {
              entry.date = NSDate()
              entry.routineStreak = lastStreak + routineStreakCounter
              entry.isEmpty = false
+             entry.name = entries.last!.name
              print("save tapped")
              RealmHelper.addEntry(entry)
              self.navigationController?.popToRootViewControllerAnimated(true)
@@ -115,6 +117,7 @@ class AddDiaryEntryViewController: UIViewController {
         while x < daysBetweenDates(dateA, endDate: dateB) {
          let entry = Entry()
          entry.isEmpty = true
+         entry.name = entries.last!.name
          entry.acneScale = 0
          entry.drynessScale = 0
          entry.oilinessScale = 0
@@ -135,6 +138,7 @@ class AddDiaryEntryViewController: UIViewController {
             entry.date = NSDate()
             entry.routineStreak = routineStreakCounter
             entry.isEmpty = false
+            entry.name = entries.last!.name
             print("save tapped")
             RealmHelper.addEntry(entry)
             self.navigationController?.popToRootViewControllerAnimated(true)
@@ -149,6 +153,10 @@ class AddDiaryEntryViewController: UIViewController {
             entry.rednessScale = rednessSliderValue
             entry.date = NSDate()
             entry.routineStreak = routineStreakCounter
+            let realm = RLMRealm.defaultRealm()
+            realm.beginWriteTransaction()
+            entry.name = "YOUR PROFILE"
+            try! realm.commitWriteTransaction()
             print("save tapped")
             RealmHelper.addEntry(entry)
             self.navigationController?.popToRootViewControllerAnimated(true)

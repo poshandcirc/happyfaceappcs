@@ -28,6 +28,7 @@
 		DF2F39001D41776D00916E24 /* RecoverProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */; };
 		DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */; };
 		DF379CFB1D493118004559A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF379CFA1D493118004559A5 /* SplashViewController.swift */; };
+		DF62F39F1D5244E000835EF8 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverProductViewController.swift; path = Routine/RecoverProductViewController.swift; sourceTree = "<group>"; };
 		DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveProductTableViewCell.swift; path = Routine/ArchiveProductTableViewCell.swift; sourceTree = "<group>"; };
 		DF379CFA1D493118004559A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = "Splash Screen/SplashViewController.swift"; sourceTree = "<group>"; };
+		DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromLeft.swift; path = Routine/SegueFromLeft.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				DF2F38FD1D4165C800916E24 /* ListHistoryTableViewController.swift */,
 				DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */,
 				DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */,
+				DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */,
 			);
 			name = Routine;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF62F39F1D5244E000835EF8 /* SegueFromLeft.swift in Sources */,
 				DF2F38FE1D4165C800916E24 /* ListHistoryTableViewController.swift in Sources */,
 				DF2F38F21D4121BB00916E24 /* ListRoutineItemsTableViewController.swift in Sources */,
 				DF2F38FC1D4140B800916E24 /* Routine.swift in Sources */,

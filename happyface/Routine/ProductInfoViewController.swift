@@ -16,6 +16,7 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var middayLabel: UILabel!
     @IBOutlet weak var nightLabel: UILabel!
     @IBOutlet weak var selectLabel: UILabel!
+    @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var rXImage: UIImageView!
 
@@ -48,10 +49,29 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
             if routine.isPrescription == true {
                 rXImage.image = UIImage(named: "rX")
             }
-            else if routine.isPrescription == false {
+            else if productNameLabel.text!.uppercaseString.containsString("EYE") || productNameLabel.text!.uppercaseString.containsString("LASH") {
+                rXImage.image = UIImage(named: "eye")
+            }
+            else if productNameLabel.text!.uppercaseString.containsString("LIP") || productNameLabel.text!.uppercaseString.containsString("MOUTH") {
+                rXImage.image = UIImage(named: "lips")
+            }
+            else if (routine.morningUse == true) && (routine.nightUse == false) {
+                rXImage.image = UIImage(named: "AM")
+            }
+            else if (routine.nightUse == true) && (routine.morningUse == false) {
+                rXImage.image = UIImage(named: "PM")
+            }
+            else if routine.selectiveUse == true {
+                rXImage.image = UIImage(named: "SOS")
+            }
+            else {
                 rXImage.image = UIImage(named: "heart")
             }
-            infoLabel.text = "\(routine.additionalNotes)"
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.LongStyle
+            let today = formatter.stringFromDate(routine.today)
+            infoLabel.text = "Date added: \(today)."
+            notesTextView.text = "\(routine.additionalNotes)"
         }
     }
 }

@@ -16,15 +16,24 @@ class ListHistoryTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         routines = RealmHelper.retrieveRoutine()
+        self.navigationItem.hidesBackButton = true
+//        let backItem = UIBarButtonItem(title: "Back", style: .Bordered, target: nil, action: nil)
+//        self.navigationItem.setRightBarButtonItem(backItem, animated: true)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         routines = RealmHelper.retrieveRoutine()
+        self.navigationItem.hidesBackButton = true
+//        let backItem = UIBarButtonItem(title: "Back", style: .Bordered, target: nil, action: nil)
+//        self.navigationItem.setRightBarButtonItem(backItem, animated: true)
+        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,15 +79,21 @@ class ListHistoryTableViewController: UITableViewController {
             }
         }
     }
+    
+    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue){
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func backAction(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
-    }
+/*    @IBAction func backAction(sender: AnyObject) {
+//        dismissViewControllerAnimated(true, completion: nil)
+//        print("dismissed")
+    performSegueWithIdentifier("returnToCurrent", sender: nil)
+    } */
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {

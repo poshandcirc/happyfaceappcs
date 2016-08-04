@@ -36,6 +36,22 @@ class ListRoutineItemsTableViewController: UITableViewController {
         currentRoutineCount = routines.count
     }
     
+    
+    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+
+        let dst: UIViewController = segue.destinationViewController
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.35
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionFade
+        transition.subtype = kCATransitionFromTop
+        dst.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        
+
+        
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routines.count
     }
@@ -64,6 +80,11 @@ override func tableView(tableView: UITableView, commitEditingStyle editingStyle:
         }
     }
     
+/*    @IBAction func historyButton(sender: AnyObject) {
+        sender.navigationController!(UINavigationController, animationControllerForOperation: UINavigationControllerOperation, fromViewController: ListRoutineItemsTableViewController, toViewController: ListHistoryTableViewController)
+    } */
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as! RoutineTableViewCell
         let row = indexPath.row
@@ -75,7 +96,7 @@ override func tableView(tableView: UITableView, commitEditingStyle editingStyle:
         else if cell.productNameLabel.text!.uppercaseString.containsString("EYE") || cell.productNameLabel.text!.uppercaseString.containsString("LASH") {
             cell.prodIcon.image = UIImage(named: "eye")
         }
-        else if cell.productNameLabel.text!.uppercaseString.containsString("LIP") || cell.productNameLabel.text!.uppercaseString.containsString("MOUTH") {
+        else if cell.productNameLabel.text!.uppercaseString.containsString("LIP") || cell.productNameLabel.text!.uppercaseString.containsString("MOUTH") || cell.productNameLabel.text!.uppercaseString.containsString("BALM") {
             cell.prodIcon.image = UIImage(named: "lips")
         }
         else if (routine.morningUse == true) && (routine.nightUse == false) {

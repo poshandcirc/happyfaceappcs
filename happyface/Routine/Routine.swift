@@ -19,4 +19,5 @@ class Routine: Object {
     dynamic var currentUse = true
     dynamic var isPrescription = false
     dynamic var iconNum = 0
+    dynamic var today = NSDate()
 }

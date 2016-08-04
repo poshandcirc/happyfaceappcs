@@ -16,16 +16,19 @@
 
 import UIKit
 import RealmSwift
+import Realm
 import Charts
 
 class GraphViewController: UIViewController {
 
+    @IBOutlet weak var nameButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var routineControlSeg: UISegmentedControl!
     var viewSeg: Int = 0
     var datesUse: [String] = []
     var statsUse: [Double] = []
     var datesArray: [String]!
+    var nameString: String = "CLICK HERE"
     @IBOutlet weak var routineStreakLabel: UILabel!
     @IBAction func routineControl(sender: UISegmentedControl) {
         switch routineControlSeg.selectedSegmentIndex {
@@ -61,9 +64,12 @@ class GraphViewController: UIViewController {
         let allEntries = RealmHelper.retrieveEntry()
         if allEntries.count == 0 {
             routineStreakLabel.text = "Routine Streak: 0"
+            nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         else if allEntries.count != 0 {
             routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
+            nameString = allEntries.last!.name
+            nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         for entry in allEntries {
             let formatter = NSDateFormatter()
@@ -84,6 +90,7 @@ class GraphViewController: UIViewController {
             }
         }
         
+        
         datesArray = dates
         datesUse = dates
         statsUse = stats
@@ -101,10 +108,13 @@ class GraphViewController: UIViewController {
         
         let allEntries = RealmHelper.retrieveEntry()
         if allEntries.count == 0 {
-        routineStreakLabel.text = "Routine Streak: 0"
+            routineStreakLabel.text = "Routine Streak: 0"
+            nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         else if allEntries.count != 0 {
             routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
+            nameString = allEntries.last!.name
+            nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         for entry in allEntries {
             let formatter = NSDateFormatter()
@@ -131,6 +141,36 @@ class GraphViewController: UIViewController {
         
     }
     
+    func changeButton(string: String) {
+        nameString = string
+    }
+    
+    @IBAction func setName(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Hey, gorgeous!", message: "What's your name?", preferredStyle: .Alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
+            let field = alertController.textFields![0] as? UITextField
+                // store your data
+        let entries = RealmHelper.retrieveEntry()
+        let realm = RLMRealm.defaultRealm()
+            realm.beginWriteTransaction()
+        entries.last!.name = (field?.text)!
+//            self.changeButton((field?.text)!)
+            self.nameButton.setTitle(entries.last!.name, forState: UIControlState.Normal)
+            try! realm.commitWriteTransaction()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Name"
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     func setChart(dataPoints: [String], values: [Double]) {
         barChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)

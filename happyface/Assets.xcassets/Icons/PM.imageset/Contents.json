@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "PM.png"
+      "filename" : "iPhone6.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "PM@2x.png"
+      "filename" : "iPhone6@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "PM@3x.png"
+      "filename" : "iPhone6@3x.png"
     }
   ],
   "info" : {
