@@ -55,7 +55,11 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UITabBar.appearance().barTintColor = UIColor.whiteColor()
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], forState:.Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], forState:.Selected)
+        
         barChartView.noDataText = "You're so close. Get it together Cassandra."
         
         var dates: [String] = []
