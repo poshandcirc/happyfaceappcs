@@ -30,6 +30,9 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
+    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let routine = routine {
@@ -74,7 +77,7 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
             notesTextView.text = "\(routine.additionalNotes)"
         }
     }
-}
+
     
     // MARK: UIPickerViewDataSource
     
@@ -147,14 +150,17 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
+    */
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "editSegue" {
+                let destinatonVC = segue.destinationViewController as! EditItemViewController
+                destinatonVC.routine = self.routine
+        
     }
-    */
-
+ 
+}
+    }}

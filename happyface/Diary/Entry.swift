@@ -17,6 +17,7 @@ class Entry: Object {
     dynamic var rednessScale = 0
     dynamic var routineStreak = 0
     dynamic var date = NSDate()
+    // isEmpty: empty entry, all values are zero because none were added
     dynamic var isEmpty = false
     dynamic var name = ""
 }

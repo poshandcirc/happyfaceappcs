@@ -187,7 +187,7 @@ class GraphViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: nil)
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Your Percent Happy!")
         let chartData = BarChartData(xVals: datesArray, dataSet: chartDataSet)
         barChartView.data = chartData
     

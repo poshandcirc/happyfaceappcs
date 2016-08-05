@@ -6,6 +6,7 @@
 //  Copyright © 2016 Cassandra Stone. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class AddItemViewController: UIViewController {
@@ -26,11 +27,41 @@ class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        if infoTextField.editing == true {
+        self.view.frame.origin.y += keyboardSize.height
+    }
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        
+        if infoTextField.editing == true {
+        if keyboardSize.height == offset.height {
+            print("offset")
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.view.frame.origin.y -= keyboardSize.height
+            })
+        } else {
+            print("not")
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.view.frame.origin.y += keyboardSize.height - offset.height
+            })
+        }
+        }
     }
     
 
@@ -90,6 +121,12 @@ class AddItemViewController: UIViewController {
     }
     
     @IBAction func saveProduct(sender: UIButton) {
+        if productNameTextField.text!.isEmpty {
+            let alert = UIAlertController(title: "Wait a second!", message: "Looks like you forgot a name! Are you sure you want to add this?", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
         let routine = Routine()
         routine.morningUse = morningBool
         routine.middayUse = middayBool
@@ -103,9 +140,15 @@ class AddItemViewController: UIViewController {
         print("is this working")
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
+    }
 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
     }
 
 // http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift

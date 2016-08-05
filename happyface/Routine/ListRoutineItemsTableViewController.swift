@@ -47,9 +47,6 @@ class ListRoutineItemsTableViewController: UITableViewController {
         transition.type = kCATransitionFade
         transition.subtype = kCATransitionFromTop
         dst.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        
-
-        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -29,6 +29,7 @@
 		DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */; };
 		DF379CFB1D493118004559A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF379CFA1D493118004559A5 /* SplashViewController.swift */; };
 		DF62F39F1D5244E000835EF8 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */; };
+		DF82B9E91D53CC32005D17CA /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9E81D53CC32005D17CA /* EditItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +45,7 @@
 		DF2F38C41D353C5600916E24 /* ListDiaryEntriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDiaryEntriesTableViewController.swift; sourceTree = "<group>"; };
 		DF2F38C61D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryCellTableViewCell.swift; sourceTree = "<group>"; };
 		DF2F38C81D353CBD00916E24 /* AddDiaryEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDiaryEntryViewController.swift; sourceTree = "<group>"; };
-		DF2F38D31D3547B000916E24 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		DF2F38D31D3547B000916E24 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Diary/Entry.swift; sourceTree = "<group>"; };
 		DF2F38D51D3681D200916E24 /* EntryStatsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryStatsUIViewController.swift; sourceTree = "<group>"; };
 		DF2F38D71D36974200916E24 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		DF2F38E61D3B00E500916E24 /*  GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " GraphViewController.swift"; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveProductTableViewCell.swift; path = Routine/ArchiveProductTableViewCell.swift; sourceTree = "<group>"; };
 		DF379CFA1D493118004559A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = "Splash Screen/SplashViewController.swift"; sourceTree = "<group>"; };
 		DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromLeft.swift; path = Routine/SegueFromLeft.swift; sourceTree = "<group>"; };
+		DF82B9E81D53CC32005D17CA /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditItemViewController.swift; path = Routine/EditItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		DF2F38AE1D33DCC700916E24 /* happyface */ = {
 			isa = PBXGroup;
 			children = (
+				DF82B9EB1D54D9E0005D17CA /* Model */,
 				DF379CF91D4930E3004559A5 /* Splash Screen */,
 				DF2F38F01D41218E00916E24 /* Routine */,
 				DF2F38D91D3962DB00916E24 /* Profile */,
@@ -130,7 +133,6 @@
 				DF2F38C41D353C5600916E24 /* ListDiaryEntriesTableViewController.swift */,
 				DF2F38C61D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift */,
 				DF2F38C81D353CBD00916E24 /* AddDiaryEntryViewController.swift */,
-				DF2F38D31D3547B000916E24 /* Entry.swift */,
 				DF2F38D51D3681D200916E24 /* EntryStatsUIViewController.swift */,
 			);
 			path = Diary;
@@ -159,11 +161,11 @@
 				DF2F38F31D4121ED00916E24 /* AddItemViewController.swift */,
 				DF2F38F51D41221400916E24 /* ProductInfoViewController.swift */,
 				DF2F38F71D4123B500916E24 /* RoutineTableViewCell.swift */,
-				DF2F38FB1D4140B800916E24 /* Routine.swift */,
 				DF2F38FD1D4165C800916E24 /* ListHistoryTableViewController.swift */,
 				DF2F38FF1D41776D00916E24 /* RecoverProductViewController.swift */,
 				DF2F39011D47EAC800916E24 /* ArchiveProductTableViewCell.swift */,
 				DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */,
+				DF82B9E81D53CC32005D17CA /* EditItemViewController.swift */,
 			);
 			name = Routine;
 			sourceTree = "<group>";
@@ -174,6 +176,15 @@
 				DF379CFA1D493118004559A5 /* SplashViewController.swift */,
 			);
 			name = "Splash Screen";
+			sourceTree = "<group>";
+		};
+		DF82B9EB1D54D9E0005D17CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F38FB1D4140B800916E24 /* Routine.swift */,
+				DF2F38D31D3547B000916E24 /* Entry.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +319,7 @@
 				DF2F38D41D3547B000916E24 /* Entry.swift in Sources */,
 				DF2F38D61D3681D200916E24 /* EntryStatsUIViewController.swift in Sources */,
 				DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */,
+				DF82B9E91D53CC32005D17CA /* EditItemViewController.swift in Sources */,
 				DF2F38C51D353C5600916E24 /* ListDiaryEntriesTableViewController.swift in Sources */,
 				DF2F38C91D353CBD00916E24 /* AddDiaryEntryViewController.swift in Sources */,
 				DF2F38F41D4121ED00916E24 /* AddItemViewController.swift in Sources */,

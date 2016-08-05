@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 class RecoverProductViewController: UIViewController {
     @IBOutlet weak var productNameLabel: UILabel!
@@ -75,7 +77,10 @@ class RecoverProductViewController: UIViewController {
     
 
     @IBAction func recoverItem(sender: UIButton) {
+        let realm = RLMRealm.defaultRealm()
+        realm.beginWriteTransaction()
         routine?.currentUse = true
+        try! realm.commitWriteTransaction()
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
