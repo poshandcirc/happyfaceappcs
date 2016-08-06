@@ -73,7 +73,8 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.LongStyle
             let today = formatter.stringFromDate(routine.today)
-            infoLabel.text = "Date added: \(today)."
+            let dateString = "Date added: \(today)."
+            infoLabel.text = dateString.uppercaseString
             notesTextView.text = "\(routine.additionalNotes)"
         }
     }

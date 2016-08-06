@@ -29,6 +29,7 @@ class AddItemViewController: UIViewController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+
     }
     
     
@@ -163,6 +164,8 @@ class AddItemViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
     }
+    
+
 
 // http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
 // http://stackoverflow.com/questions/28813339/move-a-view-up-only-when-the-keyboard-covers-an-input-field
@@ -178,3 +181,4 @@ class AddItemViewController: UIViewController {
     */
 
 }
+

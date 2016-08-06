@@ -17,7 +17,6 @@ class RecoverProductViewController: UIViewController {
     @IBOutlet weak var nightLabel: UILabel!
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var infoLabel: UITextView!
-    @IBOutlet weak var rXImage: UIImageView!
     @IBOutlet weak var recoverButton: UIButton!
     var routine: Routine?
 
@@ -49,28 +48,6 @@ class RecoverProductViewController: UIViewController {
             if routine.selectiveUse == true {
                 selectLabel.textColor = UIColor.blackColor()
             }
-            if routine.isPrescription == true {
-                rXImage.image = UIImage(named: "rX")
-            }
-            else if productNameLabel.text!.uppercaseString.containsString("EYE") || productNameLabel.text!.uppercaseString.containsString("LASH") {
-                rXImage.image = UIImage(named: "eye")
-            }
-            else if productNameLabel.text!.uppercaseString.containsString("LIP") || productNameLabel.text!.uppercaseString.containsString("MOUTH") {
-                rXImage.image = UIImage(named: "lips")
-            }
-            else if (routine.morningUse == true) && (routine.nightUse == false) {
-                rXImage.image = UIImage(named: "AM")
-            }
-            else if (routine.nightUse == true) && (routine.morningUse == false) {
-                rXImage.image = UIImage(named: "PM")
-            }
-            else if routine.selectiveUse == true {
-                rXImage.image = UIImage(named: "SOS")
-            }
-            else {
-                rXImage.image = UIImage(named: "heart")
-            }
-
             infoLabel.text = "\(routine.additionalNotes)"
         }
     }
