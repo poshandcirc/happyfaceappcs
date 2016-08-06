@@ -69,7 +69,8 @@ class ListRoutineItemsTableViewController: UITableViewController {
     
 override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-           let realm = RLMRealm.defaultRealm()
+        ParseHelper.archiveRoutine(routines[indexPath.row].itemName, currentUse: false)
+        let realm = RLMRealm.defaultRealm()
         realm.beginWriteTransaction()
         routines[indexPath.row].currentUse = false
             routines = RealmHelper.retrieveCurrentRoutine()

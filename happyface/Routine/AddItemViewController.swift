@@ -138,7 +138,20 @@ class AddItemViewController: UIViewController {
         routine.isPrescription = prescriptBool
         RealmHelper.addRoutine(routine)
         print("is this working")
-        self.navigationController?.popToRootViewControllerAnimated(true)
+            
+        let pRoutine = ParRoutine()
+        pRoutine.itemName = productNameTextField.text!
+        pRoutine.morningUse = morningBool
+        pRoutine.middayUse = middayBool
+        pRoutine.nightUse = nightBool
+        pRoutine.selectiveUse = selectBool
+        pRoutine.additionalNotes = infoTextField.text!
+        pRoutine.currentUse = true
+        pRoutine.isPrescription = prescriptBool
+        pRoutine.today = NSDate()
+        pRoutine.uploadRoutine()
+            
+    self.navigationController?.popToRootViewControllerAnimated(true)
     }
     }
 

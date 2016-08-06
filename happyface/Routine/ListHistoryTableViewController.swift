@@ -97,6 +97,7 @@ class ListHistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            ParseHelper.deleteRoutine(routines[indexPath.row].itemName)
             RealmHelper.deleteRoutine(routines[indexPath.row])
             routines = RealmHelper.retrieveRoutine()
         }

@@ -30,6 +30,10 @@
 		DF379CFB1D493118004559A5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF379CFA1D493118004559A5 /* SplashViewController.swift */; };
 		DF62F39F1D5244E000835EF8 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */; };
 		DF82B9E91D53CC32005D17CA /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9E81D53CC32005D17CA /* EditItemViewController.swift */; };
+		DF82B9ED1D54EFA7005D17CA /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9EC1D54EFA7005D17CA /* ParseHelper.swift */; };
+		DF82B9F11D550EE5005D17CA /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9F01D550EE5005D17CA /* ErrorHandling.swift */; };
+		DF82B9F71D554435005D17CA /* ParEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9F61D554435005D17CA /* ParEntry.swift */; };
+		DF82B9F91D555DBB005D17CA /* ParRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82B9F81D555DBB005D17CA /* ParRoutine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		DF379CFA1D493118004559A5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = "Splash Screen/SplashViewController.swift"; sourceTree = "<group>"; };
 		DF62F39E1D5244E000835EF8 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromLeft.swift; path = Routine/SegueFromLeft.swift; sourceTree = "<group>"; };
 		DF82B9E81D53CC32005D17CA /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditItemViewController.swift; path = Routine/EditItemViewController.swift; sourceTree = "<group>"; };
+		DF82B9EC1D54EFA7005D17CA /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseHelper.swift; path = Helpers/ParseHelper.swift; sourceTree = "<group>"; };
+		DF82B9F01D550EE5005D17CA /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		DF82B9F61D554435005D17CA /* ParEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParEntry.swift; path = Diary/ParEntry.swift; sourceTree = "<group>"; };
+		DF82B9F81D555DBB005D17CA /* ParRoutine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParRoutine.swift; path = Routine/ParRoutine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				DF2F38D71D36974200916E24 /* RealmHelper.swift */,
+				DF82B9EC1D54EFA7005D17CA /* ParseHelper.swift */,
+				DF82B9F01D550EE5005D17CA /* ErrorHandling.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -183,6 +193,8 @@
 			children = (
 				DF2F38FB1D4140B800916E24 /* Routine.swift */,
 				DF2F38D31D3547B000916E24 /* Entry.swift */,
+				DF82B9F61D554435005D17CA /* ParEntry.swift */,
+				DF82B9F81D555DBB005D17CA /* ParRoutine.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -319,8 +331,10 @@
 				DF2F38D41D3547B000916E24 /* Entry.swift in Sources */,
 				DF2F38D61D3681D200916E24 /* EntryStatsUIViewController.swift in Sources */,
 				DF2F39021D47EAC800916E24 /* ArchiveProductTableViewCell.swift in Sources */,
+				DF82B9F11D550EE5005D17CA /* ErrorHandling.swift in Sources */,
 				DF82B9E91D53CC32005D17CA /* EditItemViewController.swift in Sources */,
 				DF2F38C51D353C5600916E24 /* ListDiaryEntriesTableViewController.swift in Sources */,
+				DF82B9F71D554435005D17CA /* ParEntry.swift in Sources */,
 				DF2F38C91D353CBD00916E24 /* AddDiaryEntryViewController.swift in Sources */,
 				DF2F38F41D4121ED00916E24 /* AddItemViewController.swift in Sources */,
 				DF2F38D81D36974200916E24 /* RealmHelper.swift in Sources */,
@@ -328,7 +342,9 @@
 				DF2F38F61D41221400916E24 /* ProductInfoViewController.swift in Sources */,
 				DF2F38B01D33DCC700916E24 /* AppDelegate.swift in Sources */,
 				DF2F38F81D4123B500916E24 /* RoutineTableViewCell.swift in Sources */,
+				DF82B9F91D555DBB005D17CA /* ParRoutine.swift in Sources */,
 				DF2F38C71D353C8A00916E24 /* DiaryEntryCellTableViewCell.swift in Sources */,
+				DF82B9ED1D54EFA7005D17CA /* ParseHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

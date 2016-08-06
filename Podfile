@@ -7,6 +7,11 @@ target 'happyface' do
 
   # Pods for happyface
   pod 'RealmSwift'
-  pod ‘Charts/Realm’
+  pod ‘Charts/Realm'
+  pod 'Bond', '4.0.0'
+  pod 'ConvenienceKit'
+  pod 'Parse', '~> 1.14.2'
+  pod 'ParseFacebookUtilsV4'
+  pod 'ParseUI'
 
 end

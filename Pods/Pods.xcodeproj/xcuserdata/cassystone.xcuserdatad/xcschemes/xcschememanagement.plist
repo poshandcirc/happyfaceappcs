@@ -4,7 +4,52 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Bond.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ConvenienceKit-ConvenienceKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ConvenienceKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseFacebookUtilsV4.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseUI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,12 +82,57 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C0C2C51D430142EA4C055AC98EF850B</key>
+		<key>0DAB070EB9CCC5446C2AE8F89A8E2436</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0EB19C1377A747F81110D44E2D5FCF78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>11A09A967C036AE6CFECDFEA8325FE93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6EDC37F3FA92533C6AC3562458AA91F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>802D3B1C197FEA0861F5931F7ED43355</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8978C7FB7007A28B676AB1EA004C3923</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8BA709253E0350B01F1F6F15B89DC96B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA0ED018954B2E035A694BF72506145C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1F78B1C5F8F2CCD0E68552EAF2B9B52</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,6 +9,7 @@
 import UIKit
 import Realm
 import RealmSwift
+import Parse
 
 class EditItemViewController: UIViewController, UITextViewDelegate {
 
@@ -27,6 +28,8 @@ class EditItemViewController: UIViewController, UITextViewDelegate {
     var nightBool: Bool = false
     var selectBool: Bool = false
     var prescriptBool: Bool = false
+    var currentBool: Bool = true
+    var originalName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,7 @@ class EditItemViewController: UIViewController, UITextViewDelegate {
         productInfoTextField!.delegate = self
         productNameTextField!.delegate = self
         if let routine = routine {
+            originalName = routine.itemName
             productNameTextField.text = "\(routine.itemName)"
             func textViewDidChange(textView: UITextView) { //Handle the text changes here
                 print(textView.text); //the textView parameter is the textView where text was changed
@@ -51,6 +55,9 @@ class EditItemViewController: UIViewController, UITextViewDelegate {
             }
             if routine.selectiveUse == true {
                 self.selectiveSwitch.setOn(true, animated: false)
+            }
+            if routine.currentUse == false {
+                self.currentBool == false
             }
             productInfoTextField.text = "\(routine.additionalNotes)"
             if routine.isPrescription == true {
@@ -193,13 +200,16 @@ class EditItemViewController: UIViewController, UITextViewDelegate {
         routine!.middayUse = middayBool
         routine!.nightUse = nightBool
         routine!.selectiveUse = selectBool
-        routine!.currentUse = true
+        routine!.currentUse = currentBool
         routine!.additionalNotes = productInfoTextField.text!
         routine!.itemName = productNameTextField.text!
         routine!.isPrescription = prescriptBool
         try! realm.commitWriteTransaction()
         print("edit test")
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        
+        ParseHelper.updateRoutine(originalName, newItemName: productNameTextField.text!, morningUse: morningBool, middayUse: middayBool, nightUse: nightBool, selectiveUse: selectBool, additionalNotes: productInfoTextField.text!, currentUse: currentBool, isPrescription: prescriptBool)
+        
+    self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

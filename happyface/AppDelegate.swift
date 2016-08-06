@@ -8,6 +8,9 @@
 
 import UIKit
 import RealmSwift
+import Parse
+import FBSDKCoreKit
+import ParseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+// MARK: Realm configuration
         // Inside your application(application:didFinishLaunchingWithOptions:)
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
@@ -25,50 +29,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
             migration.enumerate(Routine.className()) { oldObject, newObject in
-          
                 // We haven’t migrated anything yet, so oldSchemaVersion == 0
                 if (oldSchemaVersion < 10) {
                     // Nothing to do!
                     // Realm will automatically detect new properties and removed properties
                     // And will update the schema on disk automatically
-                    
                     newObject!["today"] = NSDate()
                 }
                 }})
-        
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
-        
         // Now that we've told Realm how to handle the schema change, opening the file
         // will automatically perform the migration
         let realm = try! Realm()
+
+// MARK: Parse SDK
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "HappyFaceApp"
+            $0.server = "https://happyfaceapp.herokuapp.com/parse"
+        }
         
+        Parse.initializeWithConfiguration(configuration)
+        
+        /*
+        // asynchronous try
+        PFUser.logInWithUsernameInBackground("testytest", password: "testytest") { (user:PFUser?, error:NSError?) in
+            if error == nil {
+                print("woot we did it")
+            } else {
+                print("total disaster")
+            }
+        }
+ */
+        //
+        
+        // Test User
+        do {
+            try PFUser.logInWithUsername("testytest", password: "testytest")
+        } catch {
+            print("Unable to log in")
+        }
+        
+        if let currentUser = PFUser.currentUser() {
+            print("\(currentUser.username!) logged in succesfully")
+        } else {
+            print("No logged in user :(")
+        }
+
+        
+// MARK: AppDelegate appearance features
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
         UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
-        
         UINavigationBar.appearance().translucent = false
-        
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 18)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
-        
-//        UITabBarController. = UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)
-
-        
-//        window?.backgroundColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
         window?.backgroundColor = (UIColor .whiteColor())
-
-        
-        
-//        UITabBar.appearance().backgroundColor = UIColor.whiteColor()
-//        UITabBar.appearance().tintColor = UIColor.whiteColor()
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 10)!, NSForegroundColorAttributeName: UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)], forState: UIControlState.Normal)
-        
-//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blueColor()]
-        
-        //UINavigationBar.appearance().backgroundColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
-        
- //       UIBarButtonItem.setTitleTextAttributes([NSFontAttributeName: "Futura"], forState: UIControlState.normal)
-        
+
         return true
     }
 

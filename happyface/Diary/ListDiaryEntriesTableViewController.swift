@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Parse
 
 class ListDiaryEntriesTableViewController: UITableViewController {
     var entries: Results<Entry>! {
@@ -50,6 +51,9 @@ class ListDiaryEntriesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
+//            let entryDate = entries[indexPath.row].date
+//            print("\(entryDate)")
+//            ParseHelper.deleteEntry(entries[indexPath.row].date)
             RealmHelper.deleteEntry(entries[indexPath.row])
             entries = RealmHelper.retrieveNonEmptyEntry()
         }

@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Realm
+import Parse
 
 class AddDiaryEntryViewController: UIViewController {
     @IBOutlet weak var acneSlider: UISlider!
@@ -75,6 +76,7 @@ class AddDiaryEntryViewController: UIViewController {
         return components.day
     }
     
+    
     @IBAction func saveEntry(sender: UIButton) {
         let entries = RealmHelper.retrieveEntry()
         
@@ -83,6 +85,8 @@ class AddDiaryEntryViewController: UIViewController {
          lastStreak = entries.last!.routineStreak
          let dateA = entries.last!.date
          let dateB = NSDate()
+         let calendar = NSCalendar.currentCalendar()
+         let startDateA = calendar.startOfDayForDate(dateA)
          let formatter = NSDateFormatter()
          formatter.dateStyle = NSDateFormatterStyle.LongStyle
          let dateAString = formatter.stringFromDate(dateA)
@@ -93,8 +97,14 @@ class AddDiaryEntryViewController: UIViewController {
             let alert = UIAlertController(title: "Sorry!", message: "For the best results, you should only add one diary entry per day. Please delete the initial entry if you would like to update today's stats.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+            
+//            RealmHelper.deleteEntry(entries.last!)
+            print("\(daysBetweenDates(dateA, endDate: dateB))")
+            
         }
-        else if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateAString != dateBString)) {
+//        else if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateAString != dateBString)) {
+        else if ((startDateA.timeIntervalSinceDate(dateB) <= NSTimeInterval(172800)) && (dateAString != dateBString)) {
+            print(dateB)
              let entry = Entry()
              entry.acneScale = acneSliderValue
              entry.drynessScale = drynessSliderValue
@@ -107,9 +117,23 @@ class AddDiaryEntryViewController: UIViewController {
              print("save tapped")
              RealmHelper.addEntry(entry)
              self.navigationController?.popToRootViewControllerAnimated(true)
+            
+            // adding Parse version Entry
+            
+            let pEntry = ParEntry()
+            pEntry.acneScale = acneSliderValue
+            pEntry.drynessScale = drynessSliderValue
+            pEntry.oilinessScale = oilinessSliderValue
+            pEntry.rednessScale = rednessSliderValue
+            pEntry.isEmpty = false
+            pEntry.date = NSDate()
+            pEntry.uploadEntry()
+ 
+            
          }
         // If days no consecutive:
         else if daysBetweenDates(dateA, endDate: dateB) >= 1 {
+        print("\(daysBetweenDates(dateA, endDate: dateB)), not consec")
         var x = 0
         // Create entry objects with "0" values for each day to fill in all consecutive days
             // new entry is added for every day in between dates
@@ -129,6 +153,7 @@ class AddDiaryEntryViewController: UIViewController {
          x += 1
          print("save tapped")
          RealmHelper.addEntry(entry)
+            
          }
         let entry = Entry()
             entry.acneScale = acneSliderValue
@@ -141,6 +166,17 @@ class AddDiaryEntryViewController: UIViewController {
             entry.name = entries.last!.name
             print("save tapped")
             RealmHelper.addEntry(entry)
+            
+        // adding Parse version Entry
+        let pEntry = ParEntry()
+            pEntry.acneScale = acneSliderValue
+            pEntry.drynessScale = drynessSliderValue
+            pEntry.oilinessScale = oilinessSliderValue
+            pEntry.rednessScale = rednessSliderValue
+            pEntry.isEmpty = false
+            pEntry.date = NSDate()
+            pEntry.uploadEntry()
+            
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
       }
@@ -159,6 +195,18 @@ class AddDiaryEntryViewController: UIViewController {
             try! realm.commitWriteTransaction()
             print("save tapped")
             RealmHelper.addEntry(entry)
+            
+            // adding Parse version Entry
+            let pEntry = ParEntry()
+            pEntry.acneScale = acneSliderValue
+            pEntry.drynessScale = drynessSliderValue
+            pEntry.oilinessScale = oilinessSliderValue
+            pEntry.rednessScale = rednessSliderValue
+            pEntry.isEmpty = false
+            pEntry.date = NSDate()
+            pEntry.uploadEntry()
+            
+            
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
     }
