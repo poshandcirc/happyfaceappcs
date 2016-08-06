@@ -440,9 +440,7 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="PROFILE" image="smileDark" selectedImage="smileDark" id="lvZ-7E-zbF">
-                        <inset key="imageInsets" minX="2.5" minY="2.5" maxX="2.5" maxY="2.5"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="PROFILE" image="smileGray" selectedImage="smileDark" id="lvZ-7E-zbF"/>
                     <connections>
                         <outlet property="barChartView" destination="xrE-r7-gzb" id="dx3-cx-VWO"/>
                         <outlet property="nameButton" destination="Jbf-bI-4R5" id="i4F-aD-Fd1"/>
@@ -477,9 +475,7 @@
         <scene sceneID="OqT-Ls-GrJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l32-T9-cXI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="DIARY" image="diaryDark" selectedImage="diaryDark" id="JAc-by-5J2">
-                        <inset key="imageInsets" minX="1" minY="1" maxX="1" maxY="1"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="DIARY" image="diaryGray" selectedImage="diaryDark" id="JAc-by-5J2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="6iK-wj-m9q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -498,9 +494,7 @@
         <scene sceneID="hAd-np-3BT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f8V-Xa-1EI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ROUTINE" image="prodBottleDark" selectedImage="prodBottleDark" id="9ks-BY-c1r">
-                        <inset key="imageInsets" minX="0.75" minY="2" maxX="0.75" maxY="2.5"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="ROUTINE" image="prodBottleGray" selectedImage="prodBottleDark" id="9ks-BY-c1r"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hCE-ec-iWN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1390,8 +1384,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="diaryDark" width="49" height="29"/>
-        <image name="prodBottleDark" width="15" height="39"/>
-        <image name="smileDark" width="39" height="39"/>
+        <image name="diaryDark" width="41" height="30"/>
+        <image name="diaryGray" width="41" height="30"/>
+        <image name="prodBottleDark" width="41" height="30"/>
+        <image name="prodBottleGray" width="41" height="30"/>
+        <image name="smileDark" width="41" height="30"/>
+        <image name="smileGray" width="41" height="30"/>
     </resources>
 </document>
