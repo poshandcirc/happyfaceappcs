@@ -1165,87 +1165,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="l4R-Eb-iGG">
-                                <rect key="frame" x="20" y="197" width="560" height="148"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Ecb-tE-f5j">
-                                        <rect key="frame" x="201" y="0.0" width="158" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MORNING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="77p-ej-617">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="31"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b6C-86-f0H">
-                                                <rect key="frame" x="109" y="0.0" width="51" height="31"/>
-                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="morningUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="n51-BF-TAy"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rZ7-Od-3OR">
-                                        <rect key="frame" x="212" y="39" width="136" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MIDDAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-Kk-Qer">
-                                                <rect key="frame" x="0.0" y="0.0" width="68" height="31"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zwh-m0-KAI">
-                                                <rect key="frame" x="87" y="0.0" width="51" height="31"/>
-                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="middayUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="1Mx-EV-slR"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-wY-ZhV">
-                                        <rect key="frame" x="219" y="78" width="123" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NIGHT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-nh-HGk">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="31"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-J1-j39">
-                                                <rect key="frame" x="74" y="0.0" width="51" height="31"/>
-                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="nightUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="xo0-Mp-QqK"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="QG9-gr-a7I">
-                                        <rect key="frame" x="142" y="117" width="277" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ONLY WHEN NECESSARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-4e-ikZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="209" height="31"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FhW-Vk-2b1">
-                                                <rect key="frame" x="228" y="0.0" width="51" height="31"/>
-                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="selectUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="QBO-gQ-s9t"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="DAILY USE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ttk-zw-Rap">
                                 <rect key="frame" x="20" y="158" width="560" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
@@ -1304,43 +1223,112 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="728-Km-kdi">
+                                <rect key="frame" x="20" y="192" width="560" height="148"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="3OG-db-aeV">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="146"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MORNING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="77p-ej-617">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="23"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MIDDAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-Kk-Qer">
+                                                <rect key="frame" x="0.0" y="41" width="68" height="23"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="NIGHT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-nh-HGk">
+                                                <rect key="frame" x="0.0" y="82" width="55" height="23"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ONLY WHEN NECESSARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-4e-ikZ">
+                                                <rect key="frame" x="0.0" y="123" width="209" height="23"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SSg-eR-48T">
+                                        <rect key="frame" x="280" y="0.0" width="280" height="148"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b6C-86-f0H">
+                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="morningUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="n51-BF-TAy"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zwh-m0-KAI">
+                                                <rect key="frame" x="231" y="39" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="middayUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="1Mx-EV-slR"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-J1-j39">
+                                                <rect key="frame" x="231" y="78" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="nightUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="xo0-Mp-QqK"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FhW-Vk-2b1">
+                                                <rect key="frame" x="231" y="117" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" red="0.3294117647" green="0.76078431369999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="selectUse:" destination="rKh-NX-kvC" eventType="valueChanged" id="QBO-gQ-s9t"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Ttk-zw-Rap" secondAttribute="trailing" id="00K-mg-Gmi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xfN-Cw-zdh" secondAttribute="trailing" id="0bZ-dZ-sEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TE8-Ox-OK0" secondAttribute="trailing" id="19l-pM-eDT"/>
-                            <constraint firstItem="00z-cU-r6H" firstAttribute="top" relation="lessThanOrEqual" secondItem="l4R-Eb-iGG" secondAttribute="bottom" constant="13" id="4eM-Ve-DSq"/>
                             <constraint firstItem="FqH-Lt-2SY" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="6Ch-7I-A6D"/>
                             <constraint firstItem="xfN-Cw-zdh" firstAttribute="top" secondItem="TE8-Ox-OK0" secondAttribute="bottom" constant="13" id="7W2-Ps-fbD"/>
                             <constraint firstItem="zbE-Qg-PSU" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="8Io-hk-0bX"/>
                             <constraint firstItem="xfN-Cw-zdh" firstAttribute="top" relation="lessThanOrEqual" secondItem="FqH-Lt-2SY" secondAttribute="bottom" constant="13" id="C43-mY-XUp"/>
                             <constraint firstItem="lMb-0b-hOT" firstAttribute="top" secondItem="1R1-oI-4MM" secondAttribute="bottom" constant="10" id="CRI-mt-6yN"/>
-                            <constraint firstItem="l4R-Eb-iGG" firstAttribute="top" relation="lessThanOrEqual" secondItem="Ttk-zw-Rap" secondAttribute="bottom" constant="13" id="E2G-5S-ue0"/>
                             <constraint firstItem="xfN-Cw-zdh" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="ESa-hE-f2c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1R1-oI-4MM" secondAttribute="trailing" id="FCs-Xj-ICX"/>
-                            <constraint firstItem="TE8-Ox-OK0" firstAttribute="top" secondItem="l4R-Eb-iGG" secondAttribute="bottom" constant="8" id="GdF-3f-hgS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zbE-Qg-PSU" secondAttribute="trailing" id="GeX-rq-zmc"/>
+                            <constraint firstItem="728-Km-kdi" firstAttribute="top" secondItem="Ttk-zw-Rap" secondAttribute="bottom" constant="13" id="Grr-Yp-R86"/>
                             <constraint firstAttribute="trailingMargin" secondItem="00z-cU-r6H" secondAttribute="trailing" id="IQH-PC-F5G"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FqH-Lt-2SY" secondAttribute="trailing" id="Ie7-ua-RkH"/>
                             <constraint firstItem="00z-cU-r6H" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="P0L-1y-gfg"/>
-                            <constraint firstItem="l4R-Eb-iGG" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="PYI-R1-CB3"/>
                             <constraint firstItem="Ttk-zw-Rap" firstAttribute="top" relation="lessThanOrEqual" secondItem="zbE-Qg-PSU" secondAttribute="bottom" constant="13" id="PlH-fy-4Sg"/>
                             <constraint firstItem="Ttk-zw-Rap" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="RnO-6d-2P3"/>
                             <constraint firstItem="TE8-Ox-OK0" firstAttribute="top" secondItem="00z-cU-r6H" secondAttribute="bottom" constant="13" id="SfR-9S-I7Y"/>
                             <constraint firstItem="TE8-Ox-OK0" firstAttribute="top" secondItem="00z-cU-r6H" secondAttribute="bottom" constant="8" id="W6s-B4-CSu"/>
                             <constraint firstItem="FqH-Lt-2SY" firstAttribute="top" relation="lessThanOrEqual" secondItem="00z-cU-r6H" secondAttribute="bottom" constant="8" id="WCC-kF-QlN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="728-Km-kdi" secondAttribute="trailing" id="WdP-Am-7cu"/>
                             <constraint firstItem="TE8-Ox-OK0" firstAttribute="top" relation="lessThanOrEqual" secondItem="xfN-Cw-zdh" secondAttribute="bottom" constant="8" id="Ycx-tq-GTx"/>
                             <constraint firstItem="zbE-Qg-PSU" firstAttribute="top" secondItem="dIg-cw-8wr" secondAttribute="bottom" constant="16" id="aaL-Ir-bBs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="l4R-Eb-iGG" secondAttribute="trailing" id="cYG-xi-oWo"/>
                             <constraint firstItem="1R1-oI-4MM" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="fSF-aJ-CN2"/>
                             <constraint firstItem="1R1-oI-4MM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TE8-Ox-OK0" secondAttribute="bottom" constant="9" id="gX8-jq-yIQ"/>
                             <constraint firstItem="TE8-Ox-OK0" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="qWr-Ic-rur"/>
+                            <constraint firstItem="728-Km-kdi" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="vXF-Ci-ieJ"/>
+                            <constraint firstItem="00z-cU-r6H" firstAttribute="top" secondItem="728-Km-kdi" secondAttribute="bottom" constant="13" id="yj6-gv-FsL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="7W2-Ps-fbD"/>
-                                <exclude reference="GdF-3f-hgS"/>
                                 <exclude reference="SfR-9S-I7Y"/>
                                 <exclude reference="W6s-B4-CSu"/>
                             </mask>
