@@ -11,12 +11,27 @@ import RealmSwift
 import Parse
 import FBSDKCoreKit
 import ParseUI
+import ParseFacebookUtilsV4
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var parseLoginHelper: ParseLoginHelper!
+    
+    override init() {
+        super.init()
+        
+        parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+            } else if let _ = user {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+                self.window?.rootViewController!.presentViewController(tabBarController, animated:true, completion: nil)
+            }
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 // MARK: Realm configuration
@@ -59,24 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 print("total disaster")
             }
-        }
- */
-        //
-        
-        // Test User
-        do {
-            try PFUser.logInWithUsername("testytest", password: "testytest")
-        } catch {
-            print("Unable to log in")
-        }
-        
-        if let currentUser = PFUser.currentUser() {
-            print("\(currentUser.username!) logged in succesfully")
-        } else {
-            print("No logged in user :(")
-        }
+        } */
 
-        
+    
 // MARK: AppDelegate appearance features
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
@@ -85,7 +85,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = (UIColor .whiteColor())
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 10)!, NSForegroundColorAttributeName: UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)], forState: UIControlState.Normal)
 
-        return true
+// MARK: Initialize Facebook
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        let user = PFUser.currentUser()
+        let startViewController: UIViewController
+        
+        if (user != nil) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            startViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+        } else {
+            let loginViewController = HFLoginViewController()
+            loginViewController.fields = [.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten, .Facebook]
+            loginViewController.delegate = parseLoginHelper
+            loginViewController.signUpController?.delegate = parseLoginHelper
+            
+            startViewController = loginViewController
+        }
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = startViewController;
+        self.window?.makeKeyAndVisible()
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -102,14 +124,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
+//    func applicationDidBecomeActive(application: UIApplication) {
+//        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//    }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+// MARK: Facebook Integration
+    func applicationDidBecomeActive(application: UIApplication) {
+        FBSDKAppEvents.activateApp()
+    }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
 
 }
 

@@ -103,7 +103,8 @@ class AddDiaryEntryViewController: UIViewController {
             
         }
 //        else if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateAString != dateBString)) {
-        else if ((startDateA.timeIntervalSinceDate(dateB) <= NSTimeInterval(172800)) && (dateAString != dateBString)) {
+        //TEST THIS LATER LOL
+        else if ((startDateA.timeIntervalSinceDate(dateB) > NSTimeInterval(-172800)) && (dateAString != dateBString)) {
             print(dateB)
              let entry = Entry()
              entry.acneScale = acneSliderValue
@@ -128,16 +129,15 @@ class AddDiaryEntryViewController: UIViewController {
             pEntry.isEmpty = false
             pEntry.date = NSDate()
             pEntry.uploadEntry()
- 
             
          }
         // If days no consecutive:
-        else if daysBetweenDates(dateA, endDate: dateB) >= 1 {
-        print("\(daysBetweenDates(dateA, endDate: dateB)), not consec")
+        else if daysBetweenDates(startDateA, endDate: dateB) >= 1 {
+        print("\(daysBetweenDates(startDateA, endDate: dateB)), not consec")
         var x = 0
         // Create entry objects with "0" values for each day to fill in all consecutive days
             // new entry is added for every day in between dates
-        var prevDate = dateA
+        var prevDate = startDateA
         while x < daysBetweenDates(dateA, endDate: dateB) {
          let entry = Entry()
          entry.isEmpty = true
