@@ -156,12 +156,17 @@ class GraphViewController: UIViewController {
             let field = alertController.textFields![0] as? UITextField
                 // store your data
         let entries = RealmHelper.retrieveEntry()
+            if entries.count != 0 {
         let realm = RLMRealm.defaultRealm()
             realm.beginWriteTransaction()
         entries.last!.name = (field?.text)!
 //            self.changeButton((field?.text)!)
             self.nameButton.setTitle(entries.last!.name, forState: UIControlState.Normal)
             try! realm.commitWriteTransaction()
+            } else {
+            self.nameString = (field?.text)!
+            self.nameButton.setTitle(self.nameString, forState: UIControlState.Normal)
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }

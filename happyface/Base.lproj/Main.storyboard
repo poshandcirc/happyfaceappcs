@@ -1229,25 +1229,25 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="3OG-db-aeV">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="146"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MORNING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="77p-ej-617">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MORNING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="77p-ej-617">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="23"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                 <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MIDDAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-Kk-Qer">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MIDDAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-Kk-Qer">
                                                 <rect key="frame" x="0.0" y="41" width="68" height="23"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                 <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="NIGHT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-nh-HGk">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NIGHT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-nh-HGk">
                                                 <rect key="frame" x="0.0" y="82" width="55" height="23"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                 <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ONLY WHEN NECESSARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-4e-ikZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ONLY WHEN NECESSARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-4e-ikZ">
                                                 <rect key="frame" x="0.0" y="123" width="209" height="23"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                 <color key="textColor" red="0.078431372550000003" green="0.18039215689999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1308,7 +1308,7 @@
                             <constraint firstItem="xfN-Cw-zdh" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="ESa-hE-f2c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1R1-oI-4MM" secondAttribute="trailing" id="FCs-Xj-ICX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zbE-Qg-PSU" secondAttribute="trailing" id="GeX-rq-zmc"/>
-                            <constraint firstItem="728-Km-kdi" firstAttribute="top" secondItem="Ttk-zw-Rap" secondAttribute="bottom" constant="13" id="Grr-Yp-R86"/>
+                            <constraint firstItem="728-Km-kdi" firstAttribute="top" relation="lessThanOrEqual" secondItem="Ttk-zw-Rap" secondAttribute="bottom" constant="13" id="Grr-Yp-R86"/>
                             <constraint firstAttribute="trailingMargin" secondItem="00z-cU-r6H" secondAttribute="trailing" id="IQH-PC-F5G"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FqH-Lt-2SY" secondAttribute="trailing" id="Ie7-ua-RkH"/>
                             <constraint firstItem="00z-cU-r6H" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="P0L-1y-gfg"/>
@@ -1324,7 +1324,7 @@
                             <constraint firstItem="1R1-oI-4MM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TE8-Ox-OK0" secondAttribute="bottom" constant="9" id="gX8-jq-yIQ"/>
                             <constraint firstItem="TE8-Ox-OK0" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="qWr-Ic-rur"/>
                             <constraint firstItem="728-Km-kdi" firstAttribute="leading" secondItem="a5W-nR-9G9" secondAttribute="leadingMargin" id="vXF-Ci-ieJ"/>
-                            <constraint firstItem="00z-cU-r6H" firstAttribute="top" secondItem="728-Km-kdi" secondAttribute="bottom" constant="13" id="yj6-gv-FsL"/>
+                            <constraint firstItem="00z-cU-r6H" firstAttribute="top" relation="lessThanOrEqual" secondItem="728-Km-kdi" secondAttribute="bottom" constant="13" id="yj6-gv-FsL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
