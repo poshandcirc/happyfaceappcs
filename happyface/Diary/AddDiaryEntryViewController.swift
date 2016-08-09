@@ -191,7 +191,7 @@ class AddDiaryEntryViewController: UIViewController {
             entry.routineStreak = routineStreakCounter
             let realm = RLMRealm.defaultRealm()
             realm.beginWriteTransaction()
-            entry.name = "YOUR PROFILE"
+            entry.name = ""
             try! realm.commitWriteTransaction()
             print("save tapped")
             RealmHelper.addEntry(entry)

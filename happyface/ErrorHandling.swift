@@ -17,7 +17,7 @@ struct ErrorHandling {
     static let ErrorDefaultMessage = "Something unexpected happened, sorry for that!"
     
     static func defaultErrorHandler(error: NSError) {
-        var alert = UIAlertController(title: ErrorTitle, message: ErrorDefaultMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: ErrorTitle, message: ErrorDefaultMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: ErrorOKButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
         
         let window = UIApplication.sharedApplication().windows[0] as! UIWindow

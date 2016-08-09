@@ -71,9 +71,15 @@ class GraphViewController: UIViewController {
             nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         else if allEntries.count != 0 {
+            if allEntries.last!.name.isEmpty == true {
+                routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
+                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            }
+            else {
             routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
             nameString = allEntries.last!.name
             nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            }
         }
         for entry in allEntries {
             let formatter = NSDateFormatter()
@@ -116,9 +122,15 @@ class GraphViewController: UIViewController {
             nameButton.setTitle(nameString, forState: UIControlState.Normal)
         }
         else if allEntries.count != 0 {
-            routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
-            nameString = allEntries.last!.name
-            nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            if allEntries.last!.name.isEmpty == true {
+                routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
+                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            }
+            else {
+                routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
+                nameString = allEntries.last!.name
+                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            }
         }
         for entry in allEntries {
             let formatter = NSDateFormatter()
