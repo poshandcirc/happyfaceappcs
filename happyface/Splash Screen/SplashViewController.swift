@@ -14,8 +14,8 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         let xScale = UITraitCollection(displayScale: 3.0)   //could be 1.0, 2.0 or 3.0
-        let image = UIImage(named: "invertedSmile" )?.imageAsset!.imageWithTraitCollection(xScale)
-        UIPasteboard.generalPasteboard().image = image;
+        let image = UIImage(named: "invertedSmile" )?.imageAsset!.image(with: xScale)
+        UIPasteboard.general.image = image;
 
         // Do any additional setup after loading the view.
     }

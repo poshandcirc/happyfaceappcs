@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class NSCacheSwift<T: Hashable, U> {
+open class NSCacheSwift<T: Hashable, U> {
   
-  private let cache: NSCache
+  fileprivate let cache: NSCache<AnyObject, AnyObject>
   
-  public var delegate: NSCacheDelegate? {
+  open var delegate: NSCacheDelegate? {
     get {
       return cache.delegate
     }
@@ -21,7 +21,7 @@ public class NSCacheSwift<T: Hashable, U> {
     }
   }
   
-  public var name: String {
+  open var name: String {
     get {
       return cache.name
     }
@@ -30,7 +30,7 @@ public class NSCacheSwift<T: Hashable, U> {
     }
   }
   
-  public var totalCostLimit: Int {
+  open var totalCostLimit: Int {
     get {
       return cache.totalCostLimit
     }
@@ -39,7 +39,7 @@ public class NSCacheSwift<T: Hashable, U> {
     }
   }
   
-  public var countLimit: Int {
+  open var countLimit: Int {
     get {
       return cache.countLimit
     }
@@ -48,7 +48,7 @@ public class NSCacheSwift<T: Hashable, U> {
     }
   }
   
-  public var evictsObjectsWithDiscardedContent: Bool {
+  open var evictsObjectsWithDiscardedContent: Bool {
     get {
       return cache.evictsObjectsWithDiscardedContent
     }
@@ -61,36 +61,36 @@ public class NSCacheSwift<T: Hashable, U> {
     cache = NSCache()
   }
   
-  public func objectForKey(key: T) -> U? {
+  open func objectForKey(_ key: T) -> U? {
     let key: AnyObject = replaceKeyIfNeccessary(key)
 
-    let value = cache.objectForKey(key) as? U
-      ?? (cache.objectForKey(key) as? Container<U>)?.content
+    let value = cache.object(forKey: key) as? U
+      ?? (cache.object(forKey: key) as? Container<U>)?.content
     
     return value
   }
 
-  public func setObject(obj: U, forKey key: T) {
+  open func setObject(_ obj: U, forKey key: T) {
     let object: AnyObject = obj as? AnyObject ?? Container(content: obj)
     let key: AnyObject = replaceKeyIfNeccessary(key)
     
     cache.setObject(object, forKey: key)
   }
   
-  public func setObject(obj: U, forKey key: T, cost g: Int) {
-    cache.setObject(obj as! AnyObject, forKey: key as! AnyObject, cost: g)
+  open func setObject(_ obj: U, forKey key: T, cost g: Int) {
+    cache.setObject(obj as AnyObject, forKey: key as AnyObject, cost: g)
   }
   
-  public func removeObjectForKey(key: T) {
+  open func removeObjectForKey(_ key: T) {
     let key: AnyObject = replaceKeyIfNeccessary(key)
-    cache.removeObjectForKey(key)
+    cache.removeObject(forKey: key)
   }
   
-  public func removeAllObjects() {
+  open func removeAllObjects() {
     cache.removeAllObjects()
   }
   
-  public subscript(key: T) -> U? {
+  open subscript(key: T) -> U? {
     get {
       return objectForKey(key)
     }
@@ -106,9 +106,9 @@ public class NSCacheSwift<T: Hashable, U> {
   /*
     NSCache can only store types that conform to AnyObject. It compares keys by object identity.    To allow value types as keys, NSCacheSwift requires keys to conform to Hashable.    NSCacheSwift then creates an NSObject for each unique value (as determined by equality) that acts as the key in NSCache.
   */
-  private var keyReplacers = [T : NSObject]()
+  fileprivate var keyReplacers = [T : NSObject]()
   
-  private func replaceKeyIfNeccessary(originalKey :T) -> AnyObject {
+  fileprivate func replaceKeyIfNeccessary(_ originalKey :T) -> AnyObject {
     let key: AnyObject? = originalKey as? AnyObject ?? keyReplacers[originalKey]
     
     if let key: AnyObject = key {
@@ -124,7 +124,7 @@ public class NSCacheSwift<T: Hashable, U> {
 }
 
 private class Container<T> {
-  private (set) var content: T
+  fileprivate (set) var content: T
   
   init(content: T) {
     self.content = content

@@ -27,13 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 ErrorHandling.defaultErrorHandler(error)
             } else if let _ = user {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
-                self.window?.rootViewController!.presentViewController(tabBarController, animated:true, completion: nil)
+                let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+                self.window?.rootViewController!.present(tabBarController, animated:true, completion: nil)
             }
         }
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 // MARK: Realm configuration
         // Inside your application(application:didFinishLaunchingWithOptions:)
         let config = Realm.Configuration(
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // Nothing to do!
                     // Realm will automatically detect new properties and removed properties
                     // And will update the schema on disk automatically
-                    newObject!["today"] = NSDate()
+                    newObject!["today"] = Date()
                 }
                 }})
         // Tell Realm to use this new configuration object for the default Realm
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "https://happyfaceapp.herokuapp.com/parse"
         }
         
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
         
         /*
         // asynchronous try
@@ -78,49 +78,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
 // MARK: AppDelegate appearance features
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!, NSForegroundColorAttributeName: UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
-        UINavigationBar.appearance().translucent = false
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 18)!, NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
-        window?.backgroundColor = (UIColor .whiteColor())
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 10)!, NSForegroundColorAttributeName: UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)], forState: UIControlState.Normal)
+        UINavigationBar.appearance().isTranslucent = false
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 18)!, NSForegroundColorAttributeName: UIColor.white], for: UIControlState())
+        window?.backgroundColor = (UIColor.white)
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Futura-Medium", size: 10)!, NSForegroundColorAttributeName: UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)], for: UIControlState())
 
 // MARK: Initialize Facebook
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
-        let user = PFUser.currentUser()
+        let user = PFUser.current()
         let startViewController: UIViewController
         
         if (user != nil) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            startViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+            startViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         } else {
             let loginViewController = HFLoginViewController()
-            loginViewController.fields = [.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten, .Facebook]
+            loginViewController.fields = [.usernameAndPassword, .logInButton, .signUpButton, .passwordForgotten, .facebook]
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
             
             startViewController = loginViewController
         }
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = startViewController;
         self.window?.makeKeyAndVisible()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
@@ -128,16 +128,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 //    }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
 // MARK: Facebook Integration
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         FBSDKAppEvents.activateApp()
     }
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
 }

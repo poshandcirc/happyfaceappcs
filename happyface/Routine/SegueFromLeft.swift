@@ -11,8 +11,8 @@ import QuartzCore
 
 class SegueFromLeft: UIStoryboardSegue {
     override func perform() {
-        let src: UIViewController = self.sourceViewController
-        let dst: UIViewController = self.destinationViewController
+        let src: UIViewController = self.source
+        let dst: UIViewController = self.destination
 //        src.navigationController!.view.addSubview(self.destinationViewController.view)
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -27,7 +27,7 @@ class SegueFromLeft: UIStoryboardSegue {
         
         
 //        blah.layer.addAnimation(transition, forKey: kCATransition)
-        src.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        src.navigationController!.view.layer.add(transition, forKey: kCATransition)
         src.navigationController!.pushViewController(dst, animated: true)
 
     }

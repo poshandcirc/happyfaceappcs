@@ -18,9 +18,9 @@ import Foundation
 import Realm
 import Realm.Dynamic
 
-public class RealmCandleData: CandleChartData
+open class RealmCandleData: CandleChartData
 {
-    public init(results: RLMResults?, xValueField: String, dataSets: [IChartDataSet]?)
+    public init(results: RLMResults<RLMObject>?, xValueField: String, dataSets: [IChartDataSet]?)
     {
         if results == nil
         {

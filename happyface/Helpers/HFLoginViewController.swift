@@ -17,13 +17,13 @@ class HFLoginViewController: PFLogInViewController {
         self.view.backgroundColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
         
         self.logInView!.logo = UIImageView(image: UIImage(named: "happyface"))
-        self.logInView!.passwordForgottenButton?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.logInView!.passwordForgottenButton?.setTitleColor(UIColor.white, for: UIControlState())
 //        self.logInView!.logInButton?.backgroundColor = UIColor(colorLiteralRed: (20/255), green: (46/255), blue: (124/255), alpha: 1.0)
 //        self.logInView!.logInButton?.tintColor = UIColor(colorLiteralRed: (20/255), green: (46/255), blue: (124/255), alpha: 1.0)
 //        let happyBlue = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)     
 //        self.logInView!.logInButton?.layer.backgroundColor = happyBlue.CGColor
 //        self.logInView!.logInButton?.layer.cornerRadius = 4
-        self.logInView?.logInButton?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.logInView?.logInButton?.setTitleColor(UIColor.white, for: UIControlState())
 //        self.logInView?.logInButton?.setImage(UIImage(named: "background"), forState: UIControlState.Normal)
         self.signUpController!.signUpView!.backgroundColor = UIColor(colorLiteralRed: (84/255), green: (194/255), blue: (251/255), alpha: 1.0)
                 self.signUpController!.signUpView!.logo = UIImageView(image: UIImage(named: "happyface"))

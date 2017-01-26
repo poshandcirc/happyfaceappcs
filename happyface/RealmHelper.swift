@@ -11,14 +11,14 @@ import RealmSwift
 
 class RealmHelper {
     
-    static func addEntry(entry: Entry) {
+    static func addEntry(_ entry: Entry) {
         let realm = try! Realm()
         try! realm.write() {
             realm.add(entry)
         }
     }
     
-    static func deleteEntry(entry: Entry) {
+    static func deleteEntry(_ entry: Entry) {
         let realm = try! Realm()
         try! realm.write() {
             realm.delete(entry)
@@ -36,7 +36,7 @@ class RealmHelper {
        // https://realm.io/docs/swift/latest/
     }
     
-    static func addRoutine(routine: Routine) {
+    static func addRoutine(_ routine: Routine) {
         let realm = try! Realm()
         try! realm.write() {
             realm.add(routine)
@@ -44,7 +44,7 @@ class RealmHelper {
     }
     
     
-    static func deleteRoutine(routine: Routine) {
+    static func deleteRoutine(_ routine: Routine) {
         let realm = try! Realm()
         try! realm.write() {
             realm.delete(routine)

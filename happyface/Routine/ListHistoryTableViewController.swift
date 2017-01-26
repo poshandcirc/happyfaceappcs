@@ -27,7 +27,7 @@ class ListHistoryTableViewController: UITableViewController {
 //        self.navigationItem.setRightBarButtonItem(backItem, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         routines = RealmHelper.retrieveRoutine()
         self.navigationItem.hidesBackButton = true
@@ -36,22 +36,22 @@ class ListHistoryTableViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routines.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("archiveProductCell", forIndexPath: indexPath) as! ArchiveProductTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "archiveProductCell", for: indexPath) as! ArchiveProductTableViewCell
         let row = indexPath.row
         let routine = routines[row]
         cell.archiveProductLabel.text = routine.itemName
         if routine.isPrescription == true {
             cell.archiveProdIcon.image = UIImage(named: "rX")
         }
-        else if cell.archiveProductLabel.text!.uppercaseString.containsString("EYE") || cell.archiveProductLabel.text!.uppercaseString.containsString("LASH") {
+        else if cell.archiveProductLabel.text!.uppercased().contains("EYE") || cell.archiveProductLabel.text!.uppercased().contains("LASH") {
             cell.archiveProdIcon.image = UIImage(named: "eye")
         }
-        else if cell.archiveProductLabel.text!.uppercaseString.containsString("LIP") || cell.archiveProductLabel.text!.uppercaseString.containsString("MOUTH") {
+        else if cell.archiveProductLabel.text!.uppercased().contains("LIP") || cell.archiveProductLabel.text!.uppercased().contains("MOUTH") {
             cell.archiveProdIcon.image = UIImage(named: "lips")
         }
         else if (routine.morningUse == true) && (routine.nightUse == false) {
@@ -69,18 +69,18 @@ class ListHistoryTableViewController: UITableViewController {
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "recoverProduct" {
                 let indexPath = tableView.indexPathForSelectedRow!
                 let routine = routines[indexPath.row]
-                let recoverProductViewController = segue.destinationViewController as! RecoverProductViewController
+                let recoverProductViewController = segue.destination as! RecoverProductViewController
                 recoverProductViewController.routine = routine
             }
         }
     }
     
-    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue){
+    @IBAction func unwindToContainerVC(_ segue: UIStoryboardSegue){
         
     }
 
@@ -95,8 +95,8 @@ class ListHistoryTableViewController: UITableViewController {
     performSegueWithIdentifier("returnToCurrent", sender: nil)
     } */
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
             ParseHelper.deleteRoutine(routines[indexPath.row].itemName)
             RealmHelper.deleteRoutine(routines[indexPath.row])
             routines = RealmHelper.retrieveRoutine()

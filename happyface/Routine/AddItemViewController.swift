@@ -27,38 +27,38 @@ class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
 
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
     
-    func keyboardWillHide(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
-        if infoTextField.editing == true {
+    func keyboardWillHide(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = sender.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        if infoTextField.isEditing == true {
         self.view.frame.origin.y += keyboardSize.height
     }
     }
     
-    func keyboardWillShow(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
-        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+    func keyboardWillShow(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = sender.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        let offset: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size
         
-        if infoTextField.editing == true {
+        if infoTextField.isEditing == true {
         if keyboardSize.height == offset.height {
             print("offset")
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.view.frame.origin.y -= keyboardSize.height
             })
         } else {
             print("not")
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.view.frame.origin.y += keyboardSize.height - offset.height
             })
         }
@@ -71,36 +71,36 @@ class AddItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelAction(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+    @IBAction func cancelAction(_ sender: AnyObject) {
+        self.navigationController?.popToRootViewController(animated: true)
         }
     
-    @IBAction func morningUse(sender: UISwitch) {
-        if morningSwitch.on == true {
+    @IBAction func morningUse(_ sender: UISwitch) {
+        if morningSwitch.isOn == true {
             morningBool = true
         }
         else {
             morningBool = false
         }
     }
-    @IBAction func middayUse(sender: UISwitch) {
-        if middaySwitch.on == true  {
+    @IBAction func middayUse(_ sender: UISwitch) {
+        if middaySwitch.isOn == true  {
             middayBool = true
         }
         else {
             middayBool = false
         }
     }
-    @IBAction func nightUse(sender: UISwitch) {
-        if nightSwitch.on == true  {
+    @IBAction func nightUse(_ sender: UISwitch) {
+        if nightSwitch.isOn == true  {
             nightBool = true
         }
         else {
             nightBool = false
         }
     }
-    @IBAction func selectUse(sender: UISwitch) {
-        if selectiveSwitch.on == true  {
+    @IBAction func selectUse(_ sender: UISwitch) {
+        if selectiveSwitch.isOn == true  {
             selectBool = true
             print("something man")
         }
@@ -109,7 +109,7 @@ class AddItemViewController: UIViewController {
         }
     }
     
-    @IBAction func isPrescript(sender: UISegmentedControl) {
+    @IBAction func isPrescript(_ sender: UISegmentedControl) {
         switch prescriptControl.selectedSegmentIndex
         {
         case 0:
@@ -121,11 +121,11 @@ class AddItemViewController: UIViewController {
         }
     }
     
-    @IBAction func saveProduct(sender: UIButton) {
+    @IBAction func saveProduct(_ sender: UIButton) {
         if productNameTextField.text!.isEmpty {
-            let alert = UIAlertController(title: "Wait a second!", message: "Looks like you forgot a name! Are you sure you want to add this?", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Wait a second!", message: "Looks like you forgot a name! Are you sure you want to add this?", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else {
         let routine = Routine()
@@ -149,20 +149,20 @@ class AddItemViewController: UIViewController {
         pRoutine.additionalNotes = infoTextField.text!
         pRoutine.currentUse = true
         pRoutine.isPrescription = prescriptBool
-        pRoutine.today = NSDate()
+        pRoutine.today = Date()
         pRoutine.uploadRoutine()
             
-    self.navigationController?.popToRootViewControllerAnimated(true)
+    self.navigationController?.popToRootViewController(animated: true)
     }
     }
 
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
     
 

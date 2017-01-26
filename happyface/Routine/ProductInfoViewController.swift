@@ -26,36 +26,36 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    @IBAction func backAction(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+    @IBAction func backAction(_ sender: AnyObject) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+    @IBAction func unwindToContainerVC(_ segue: UIStoryboardSegue) {
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let routine = routine {
             productNameLabel.text = "\(routine.itemName)"
             if routine.morningUse == true {
-            morningLabel.textColor = UIColor.blackColor()
+            morningLabel.textColor = UIColor.black
             }
             if routine.middayUse == true {
-                middayLabel.textColor = UIColor.blackColor()
+                middayLabel.textColor = UIColor.black
             }
             if routine.nightUse == true {
-                nightLabel.textColor = UIColor.blackColor()
+                nightLabel.textColor = UIColor.black
             }
             if routine.selectiveUse == true {
-                selectLabel.textColor = UIColor.blackColor()
+                selectLabel.textColor = UIColor.black
             }
             if routine.isPrescription == true {
                 rXImage.image = UIImage(named: "rX")
             }
-            else if productNameLabel.text!.uppercaseString.containsString("EYE") || productNameLabel.text!.uppercaseString.containsString("LASH") {
+            else if productNameLabel.text!.uppercased().contains("EYE") || productNameLabel.text!.uppercased().contains("LASH") {
                 rXImage.image = UIImage(named: "eye")
             }
-            else if productNameLabel.text!.uppercaseString.containsString("LIP") || productNameLabel.text!.uppercaseString.containsString("MOUTH") {
+            else if productNameLabel.text!.uppercased().contains("LIP") || productNameLabel.text!.uppercased().contains("MOUTH") {
                 rXImage.image = UIImage(named: "lips")
             }
             else if (routine.morningUse == true) && (routine.nightUse == false) {
@@ -70,11 +70,11 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
             else {
                 rXImage.image = UIImage(named: "heart")
             }
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.LongStyle
-            let today = formatter.stringFromDate(routine.today)
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.long
+            let today = formatter.string(from: routine.today as Date)
             let dateString = "Date added: \(today)."
-            infoLabel.text = dateString.uppercaseString
+            infoLabel.text = dateString.uppercased()
             notesTextView.text = "\(routine.additionalNotes)"
         }
     }
@@ -153,12 +153,12 @@ class ProductInfoViewController: UIViewController, UIPickerViewDelegate {
     }
     */
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let identifier = segue.identifier {
             if identifier == "editSegue" {
-                let destinatonVC = segue.destinationViewController as! EditItemViewController
+                let destinatonVC = segue.destination as! EditItemViewController
                 destinatonVC.routine = self.routine
         
     }

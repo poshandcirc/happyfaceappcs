@@ -18,9 +18,9 @@ import Foundation
 import Realm
 import Realm.Dynamic
 
-public class RealmBubbleData: BubbleChartData
+open class RealmBubbleData: BubbleChartData
 {
-    public init(results: RLMResults?, xValueField: String, dataSets: [IChartDataSet]?)
+    public init(results: RLMResults<RLMObject>?, xValueField: String, dataSets: [IChartDataSet]?)
     {
         if results == nil
         {

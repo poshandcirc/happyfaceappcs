@@ -30,7 +30,7 @@ extension Int8: MinMaxType {}
 extension Int16: MinMaxType {}
 extension Int32: MinMaxType {}
 extension Int64: MinMaxType {}
-extension NSDate: MinMaxType {}
+extension Date: MinMaxType {}
 
 // MARK: AddableType
 
@@ -46,27 +46,27 @@ extension Int64: AddableType {}
 
 /// :nodoc:
 /// Internal class. Do not use directly.
-public class ResultsBase: NSObject, NSFastEnumeration {
-    internal let rlmResults: RLMResults
+open class ResultsBase: NSObject, NSFastEnumeration {
+    internal let rlmResults: RLMResults<RLMObject>
 
     /// Returns a human-readable description of the objects contained in these results.
-    public override var description: String {
+    open override var description: String {
         let type = "Results<\(rlmResults.objectClassName)>"
         return gsub("RLMResults <0x[a-z0-9]+>", template: type, string: rlmResults.description) ?? type
     }
 
     // MARK: Initializers
 
-    internal init(_ rlmResults: RLMResults) {
+    internal init(_ rlmResults: RLMResults<RLMObject>) {
         self.rlmResults = rlmResults
     }
 
     // MARK: Fast Enumeration
 
-    public func countByEnumeratingWithState(state: UnsafeMutablePointer<NSFastEnumerationState>,
-                                            objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>,
+    open func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>,
+                                            objects buffer: AutoreleasingUnsafeMutablePointer<AutoreleasingUnsafeMutablePointer<AnyObject?>>,
                                             count len: Int) -> Int {
-        return Int(rlmResults.countByEnumeratingWithState(state,
+        return Int(rlmResults.countByEnumerating(with: state,
                    objects: buffer,
                    count: UInt(len)))
     }
@@ -112,14 +112,14 @@ public final class Results<T: Object>: ResultsBase {
      The results collection becomes invalid if `invalidate` is called on the containing `realm`.
      An invalidated results collection can be accessed, but will always be empty.
      */
-    public var invalidated: Bool { return rlmResults.invalidated }
+    public var invalidated: Bool { return rlmResults.isInvalidated }
 
     /// The number of objects in the results collection.
     public var count: Int { return Int(rlmResults.count) }
 
     // MARK: Initializers
 
-    internal override init(_ rlmResults: RLMResults) {
+    internal override init(_ rlmResults: RLMResults<RLMObject>) {
         super.init(rlmResults)
     }
 
@@ -132,8 +132,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The index of the given object, or `nil` if the object is not in the results collection.
      */
-    public func indexOf(object: T) -> Int? {
-        return notFoundToNil(rlmResults.indexOfObject(unsafeBitCast(object, RLMObject.self)))
+    public func indexOf(_ object: T) -> Int? {
+        return notFoundToNil(rlmResults.indexOfObject(unsafeBitCast(object, to: RLMObject.self)))
     }
 
     /**
@@ -143,7 +143,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The index of the first object that matches, or `nil` if no objects match.
      */
-    public func indexOf(predicate: NSPredicate) -> Int? {
+    public func indexOf(_ predicate: NSPredicate) -> Int? {
         return notFoundToNil(rlmResults.indexOfObjectWithPredicate(predicate))
     }
 
@@ -154,7 +154,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The index of the first object that matches, or `nil` if no objects match.
      */
-    public func indexOf(predicateFormat: String, _ args: AnyObject...) -> Int? {
+    public func indexOf(_ predicateFormat: String, _ args: AnyObject...) -> Int? {
         return notFoundToNil(rlmResults.indexOfObjectWithPredicate(NSPredicate(format: predicateFormat,
                                                                                argumentArray: args)))
     }
@@ -171,15 +171,15 @@ public final class Results<T: Object>: ResultsBase {
     public subscript(index: Int) -> T {
         get {
             throwForNegativeIndex(index)
-            return unsafeBitCast(rlmResults[UInt(index)], T.self)
+            return unsafeBitCast(rlmResults[UInt(index)], to: T.self)
         }
     }
 
     /// Returns the first object in the results collection, or `nil` if the collection is empty.
-    public var first: T? { return unsafeBitCast(rlmResults.firstObject(), Optional<T>.self) }
+    public var first: T? { return unsafeBitCast(rlmResults.firstObject(), to: Optional<T>.self) }
 
     /// Returns the last object in the results collection, or `nil` if the collection is empty.
-    public var last: T? { return unsafeBitCast(rlmResults.lastObject(), Optional<T>.self) }
+    public var last: T? { return unsafeBitCast(rlmResults.lastObject(), to: Optional<T>.self) }
 
     // MARK: KVC
 
@@ -191,8 +191,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: An `Array` containing the results.
      */
-    public override func valueForKey(key: String) -> AnyObject? {
-        return rlmResults.valueForKey(key)
+    public override func value(forKey key: String) -> Any? {
+        return rlmResults.value(forKey: key)
     }
 
     /**
@@ -203,8 +203,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: An `Array` containing the results.
      */
-    public override func valueForKeyPath(keyPath: String) -> AnyObject? {
-        return rlmResults.valueForKeyPath(keyPath)
+    public override func value(forKeyPath keyPath: String) -> Any? {
+        return rlmResults.value(forKeyPath: keyPath)
     }
 
     /**
@@ -215,7 +215,7 @@ public final class Results<T: Object>: ResultsBase {
      - parameter value: The object value.
      - parameter key:   The name of the property.
      */
-    public override func setValue(value: AnyObject?, forKey key: String) {
+    public override func setValue(_ value: Any?, forKey key: String) {
         return rlmResults.setValue(value, forKey: key)
     }
 
@@ -228,8 +228,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: A `Results` containing objects that match the given predicate.
      */
-    public func filter(predicateFormat: String, _ args: AnyObject...) -> Results<T> {
-        return Results<T>(rlmResults.objectsWithPredicate(NSPredicate(format: predicateFormat, argumentArray: args)))
+    public func filter(_ predicateFormat: String, _ args: AnyObject...) -> Results<T> {
+        return Results<T>(rlmResults.objects(with: NSPredicate(format: predicateFormat, argumentArray: args)))
     }
 
     /**
@@ -239,8 +239,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: A `Results` containing objects that match the given predicate.
      */
-    public func filter(predicate: NSPredicate) -> Results<T> {
-        return Results<T>(rlmResults.objectsWithPredicate(predicate))
+    public func filter(_ predicate: NSPredicate) -> Results<T> {
+        return Results<T>(rlmResults.objects(with: predicate))
     }
 
     // MARK: Sorting
@@ -253,7 +253,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: A `Results` sorted by the specified property.
      */
-    public func sorted(property: String, ascending: Bool = true) -> Results<T> {
+    public func sorted(_ property: String, ascending: Bool = true) -> Results<T> {
         return sorted([SortDescriptor(property: property, ascending: ascending)])
     }
 
@@ -264,8 +264,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: A `Results` sorted by the specified properties.
      */
-    public func sorted<S: SequenceType where S.Generator.Element == SortDescriptor>(sortDescriptors: S) -> Results<T> {
-        return Results<T>(rlmResults.sortedResultsUsingDescriptors(sortDescriptors.map { $0.rlmSortDescriptorValue }))
+    public func sorted<S: Sequence>(_ sortDescriptors: S) -> Results<T> where S.Iterator.Element == SortDescriptor {
+        return Results<T>(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
     // MARK: Aggregate Operations
@@ -279,8 +279,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The minimum value of the property, or `nil` if the collection is empty.
      */
-    public func min<U: MinMaxType>(property: String) -> U? {
-        return rlmResults.minOfProperty(property) as! U?
+    public func min<U: MinMaxType>(_ property: String) -> U? {
+        return rlmResults.min(ofProperty: property) as! U?
     }
 
     /**
@@ -292,8 +292,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The maximum value of the property, or `nil` if the collection is empty.
      */
-    public func max<U: MinMaxType>(property: String) -> U? {
-        return rlmResults.maxOfProperty(property) as! U?
+    public func max<U: MinMaxType>(_ property: String) -> U? {
+        return rlmResults.max(ofProperty: property) as! U?
     }
 
     /**
@@ -305,8 +305,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The sum of the given property.
      */
-    public func sum<U: AddableType>(property: String) -> U {
-        return rlmResults.sumOfProperty(property) as AnyObject as! U
+    public func sum<U: AddableType>(_ property: String) -> U {
+        return rlmResults.sum(ofProperty: property) as AnyObject as! U
     }
 
     /**
@@ -318,8 +318,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - returns: The average value of the given property, or `nil` if the collection is empty.
      */
-    public func average<U: AddableType>(property: String) -> U? {
-        return rlmResults.averageOfProperty(property) as! U?
+    public func average<U: AddableType>(_ property: String) -> U? {
+        return rlmResults.average(ofProperty: property) as! U?
     }
 
     // MARK: Notifications
@@ -382,8 +382,8 @@ public final class Results<T: Object>: ResultsBase {
      - parameter block: The block to be called whenever a change occurs.
      - returns: A token which must be retained for as long as you want updates to be delivered.
      */
-    @warn_unused_result(message="You must hold on to the NotificationToken returned from addNotificationBlock")
-    public func addNotificationBlock(block: (RealmCollectionChange<Results> -> Void)) -> NotificationToken {
+    
+    public func addNotificationBlock(_ block: @escaping ((RealmCollectionChange<Results>) -> Void)) -> NotificationToken {
         return rlmResults.addNotificationBlock { results, change, error in
             block(RealmCollectionChange.fromObjc(self, change: change, error: error))
         }
@@ -394,7 +394,7 @@ extension Results: RealmCollectionType {
     // MARK: Sequence Support
 
     /// Returns a `GeneratorOf<T>` that yields successive elements in the results.
-    public func generate() -> RLMGenerator<T> {
+    public func makeIterator() -> RLMGenerator<T> {
         return RLMGenerator(collection: rlmResults)
     }
 
@@ -410,7 +410,7 @@ extension Results: RealmCollectionType {
     public var endIndex: Int { return count }
 
     /// :nodoc:
-    public func _addNotificationBlock(block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
+    public func _addNotificationBlock(_ block: @escaping (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
         NotificationToken {
         let anyCollection = AnyRealmCollection(self)
         return rlmResults.addNotificationBlock { _, change, error in

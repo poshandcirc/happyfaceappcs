@@ -30,7 +30,7 @@ class GraphViewController: UIViewController {
     var datesArray: [String]!
     var nameString: String = "CLICK HERE"
     @IBOutlet weak var routineStreakLabel: UILabel!
-    @IBAction func routineControl(sender: UISegmentedControl) {
+    @IBAction func routineControl(_ sender: UISegmentedControl) {
         switch routineControlSeg.selectedSegmentIndex {
         case 0:
             viewSeg = 0
@@ -56,9 +56,9 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UITabBar.appearance().barTintColor = UIColor.whiteColor()
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], forState:.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], forState:.Selected)
+        UITabBar.appearance().barTintColor = UIColor.white
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], for:UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(colorLiteralRed: (21/255), green: (50/255), blue: (137/255), alpha: 1.0)], for:.selected)
         
         barChartView.noDataText = "You're so close. Get it together Cassandra."
         
@@ -68,23 +68,23 @@ class GraphViewController: UIViewController {
         let allEntries = RealmHelper.retrieveEntry()
         if allEntries.count == 0 {
             routineStreakLabel.text = "Routine Streak: 0"
-            nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            nameButton.setTitle(nameString, for: UIControlState())
         }
         else if allEntries.count != 0 {
             if allEntries.last!.name.isEmpty == true {
                 routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
-                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+                nameButton.setTitle(nameString, for: UIControlState())
             }
             else {
             routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
             nameString = allEntries.last!.name
-            nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            nameButton.setTitle(nameString, for: UIControlState())
             }
         }
         for entry in allEntries {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.LongStyle
-            dates.append(formatter.stringFromDate(entry.date))
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.long
+            dates.append(formatter.string(from: entry.date))
             if viewSeg == 0 {
             stats.append(Double(entry.acneScale))
 
@@ -108,7 +108,7 @@ class GraphViewController: UIViewController {
         
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         barChartView.reloadInputViews()
         barChartView.noDataText = "You're so close. Get it together Cassandra."
@@ -119,23 +119,23 @@ class GraphViewController: UIViewController {
         let allEntries = RealmHelper.retrieveEntry()
         if allEntries.count == 0 {
             routineStreakLabel.text = "Routine Streak: 0"
-            nameButton.setTitle(nameString, forState: UIControlState.Normal)
+            nameButton.setTitle(nameString, for: UIControlState())
         }
         else if allEntries.count != 0 {
             if allEntries.last!.name.isEmpty == true {
                 routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
-                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+                nameButton.setTitle(nameString, for: UIControlState())
             }
             else {
                 routineStreakLabel.text = "Routine Streak: \(allEntries.last!.routineStreak)"
                 nameString = allEntries.last!.name
-                nameButton.setTitle(nameString, forState: UIControlState.Normal)
+                nameButton.setTitle(nameString, for: UIControlState())
             }
         }
         for entry in allEntries {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.LongStyle
-            dates.append(formatter.stringFromDate(entry.date))
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.long
+            dates.append(formatter.string(from: entry.date))
             if viewSeg == 0 {
                 stats.append(Double(entry.acneScale))
             }
@@ -157,43 +157,43 @@ class GraphViewController: UIViewController {
         
     }
     
-    func changeButton(string: String) {
+    func changeButton(_ string: String) {
         nameString = string
     }
     
-    @IBAction func setName(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Hey, gorgeous!", message: "What's your name?", preferredStyle: .Alert)
+    @IBAction func setName(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: "Hey, gorgeous!", message: "What's your name?", preferredStyle: .alert)
         
-        let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
             let field = alertController.textFields![0] as? UITextField
                 // store your data
         let entries = RealmHelper.retrieveEntry()
             if entries.count != 0 {
-        let realm = RLMRealm.defaultRealm()
+        let realm = RLMRealm.default()
             realm.beginWriteTransaction()
         entries.last!.name = (field?.text)!
 //            self.changeButton((field?.text)!)
-            self.nameButton.setTitle(entries.last!.name, forState: UIControlState.Normal)
+            self.nameButton.setTitle(entries.last!.name, for: UIControlState())
             try! realm.commitWriteTransaction()
             } else {
             self.nameString = (field?.text)!
-            self.nameButton.setTitle(self.nameString, forState: UIControlState.Normal)
+            self.nameButton.setTitle(self.nameString, for: UIControlState())
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "Name"
         }
         
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(_ dataPoints: [String], values: [Double]) {
         barChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
         barChartView.noDataText = "You're so close. Get it together Cassandra."
         barChartView.descriptionText = ""

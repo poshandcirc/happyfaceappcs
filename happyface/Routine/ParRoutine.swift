@@ -21,7 +21,7 @@ class ParRoutine: PFObject, PFSubclassing {
     @NSManaged var additionalNotes: String
     @NSManaged var currentUse: Bool
     @NSManaged var isPrescription: Bool
-    @NSManaged var today: NSDate
+    @NSManaged var today: Date
     
     static func parseClassName() -> String {
         return "ParRoutine"
@@ -32,11 +32,11 @@ class ParRoutine: PFObject, PFSubclassing {
     }
     
     func uploadRoutine() {
-        user = PFUser.currentUser()
+        user = PFUser.current()
         ParseHelper.addRoutine(user!, itemName: self.itemName, morningUse: self.morningUse, middayUse: self.middayUse, nightUse: self.nightUse, selectiveUse: self.selectiveUse, additionalNotes: self.additionalNotes, currentUse: self.currentUse, isPrescription: self.isPrescription, today: self.today)
     }
     
-    func changeRoutineName(newItem: String) {
+    func changeRoutineName(_ newItem: String) {
         ParseHelper.updateRoutine(itemName, newItemName: newItem, morningUse: self.morningUse, middayUse: self.middayUse, nightUse: self.nightUse, selectiveUse: self.selectiveUse, additionalNotes: self.additionalNotes, currentUse: self.currentUse, isPrescription: self.isPrescription)
     }
     

@@ -29,36 +29,36 @@ class RecoverProductViewController: UIViewController {
         self.navigationController?.popToRootViewControllerAnimated(true)
     } */
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if routine?.currentUse == true {
-            recoverButton.hidden = true
+            recoverButton.isHidden = true
         }
         if let routine = routine {
             productNameLabel.text = "\(routine.itemName)"
             if routine.morningUse == true {
-                morningLabel.textColor = UIColor.blackColor()
+                morningLabel.textColor = UIColor.black
             }
             if routine.middayUse == true {
-                middayLabel.textColor = UIColor.blackColor()
+                middayLabel.textColor = UIColor.black
             }
             if routine.nightUse == true {
-                nightLabel.textColor = UIColor.blackColor()
+                nightLabel.textColor = UIColor.black
             }
             if routine.selectiveUse == true {
-                selectLabel.textColor = UIColor.blackColor()
+                selectLabel.textColor = UIColor.black
             }
             infoLabel.text = "\(routine.additionalNotes)"
         }
     }
     
 
-    @IBAction func recoverItem(sender: UIButton) {
-        let realm = RLMRealm.defaultRealm()
+    @IBAction func recoverItem(_ sender: UIButton) {
+        let realm = RLMRealm.default()
         realm.beginWriteTransaction()
         routine?.currentUse = true
         try! realm.commitWriteTransaction()
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

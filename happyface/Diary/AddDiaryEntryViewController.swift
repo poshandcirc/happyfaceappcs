@@ -38,23 +38,23 @@ class AddDiaryEntryViewController: UIViewController {
     }
     
 
-    @IBAction func cancelAction(sender: UIBarButtonItem) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @IBAction func acneValueChanged(sender: UISlider) {
+    @IBAction func acneValueChanged(_ sender: UISlider) {
         acneSliderValue = Int(acneSlider.value)
     }
-    @IBAction func drynessValueChanged(sender: UISlider) {
+    @IBAction func drynessValueChanged(_ sender: UISlider) {
         drynessSliderValue = Int(drynessSlider.value)
     }
-    @IBAction func oilinessValueChanged(sender: UISlider) {
+    @IBAction func oilinessValueChanged(_ sender: UISlider) {
         oilinessSliderValue = Int(oilinessSlider.value)
     }
-    @IBAction func rednessValueChanged(sender: UISlider) {
+    @IBAction func rednessValueChanged(_ sender: UISlider) {
         rednessSliderValue = Int(rednessSlider.value)
     }
-    @IBAction func routineCheck(sender: UISegmentedControl) {
+    @IBAction func routineCheck(_ sender: UISegmentedControl) {
         switch routineController.selectedSegmentIndex
         {
         case 0:
@@ -67,36 +67,36 @@ class AddDiaryEntryViewController: UIViewController {
         }
     }
     
-    func daysBetweenDates(startDate: NSDate, endDate: NSDate) -> Int
+    func daysBetweenDates(_ startDate: Date, endDate: Date) -> Int
     {
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         
-        let components = calendar.components([.Day], fromDate: startDate, toDate: endDate, options: [])
+        let components = (calendar as NSCalendar).components([.day], from: startDate, to: endDate, options: [])
         
-        return components.day
+        return components.day!
     }
     
     
-    @IBAction func saveEntry(sender: UIButton) {
+    @IBAction func saveEntry(_ sender: UIButton) {
         let entries = RealmHelper.retrieveEntry()
         
         // Make sure entries exist (not the first entry)
         if entries.count != 0 {
          lastStreak = entries.last!.routineStreak
          let dateA = entries.last!.date
-         let dateB = NSDate()
-         let calendar = NSCalendar.currentCalendar()
-         let startDateA = calendar.startOfDayForDate(dateA)
-         let formatter = NSDateFormatter()
-         formatter.dateStyle = NSDateFormatterStyle.LongStyle
-         let dateAString = formatter.stringFromDate(dateA)
-         let dateBString = formatter.stringFromDate(dateB)
+         let dateB = Date()
+         let calendar = Calendar.current
+         let startDateA = calendar.startOfDay(for: dateA)
+         let formatter = DateFormatter()
+         formatter.dateStyle = DateFormatter.Style.long
+         let dateAString = formatter.string(from: dateA)
+         let dateBString = formatter.string(from: dateB)
          //   }
  //       if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateA.isEqualToDate(dateB) == false)) {
         if dateAString == dateBString {
-            let alert = UIAlertController(title: "Sorry!", message: "For the best results, you should only add one diary entry per day. Please delete the initial entry if you would like to update today's stats.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Sorry!", message: "For the best results, you should only add one diary entry per day. Please delete the initial entry if you would like to update today's stats.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
 //            RealmHelper.deleteEntry(entries.last!)
             print("\(daysBetweenDates(dateA, endDate: dateB))")
@@ -104,20 +104,20 @@ class AddDiaryEntryViewController: UIViewController {
         }
 //        else if ((daysBetweenDates(dateA, endDate: dateB) == 0) && (dateAString != dateBString)) {
         //TEST THIS LATER LOL
-        else if ((startDateA.timeIntervalSinceDate(dateB) > NSTimeInterval(-172800)) && (dateAString != dateBString)) {
+        else if ((startDateA.timeIntervalSince(dateB) > TimeInterval(-172800)) && (dateAString != dateBString)) {
             print(dateB)
              let entry = Entry()
              entry.acneScale = acneSliderValue
              entry.drynessScale = drynessSliderValue
              entry.oilinessScale = oilinessSliderValue
              entry.rednessScale = rednessSliderValue
-             entry.date = NSDate()
+             entry.date = Date()
              entry.routineStreak = lastStreak + routineStreakCounter
              entry.isEmpty = false
              entry.name = entries.last!.name
              print("save tapped")
              RealmHelper.addEntry(entry)
-             self.navigationController?.popToRootViewControllerAnimated(true)
+             self.navigationController?.popToRootViewController(animated: true)
             
             // adding Parse version Entry
             
@@ -127,7 +127,7 @@ class AddDiaryEntryViewController: UIViewController {
             pEntry.oilinessScale = oilinessSliderValue
             pEntry.rednessScale = rednessSliderValue
             pEntry.isEmpty = false
-            pEntry.date = NSDate()
+            pEntry.date = Date()
             pEntry.uploadEntry()
             
          }
@@ -147,7 +147,7 @@ class AddDiaryEntryViewController: UIViewController {
          entry.oilinessScale = 0
          entry.rednessScale = 0
             // set your previous day to the next day so you can keep building day by day
-            prevDate = prevDate.dateByAddingTimeInterval(86400)
+            prevDate = prevDate.addingTimeInterval(86400)
          entry.date = prevDate // make this the date after
          entry.routineStreak = 0
          x += 1
@@ -160,7 +160,7 @@ class AddDiaryEntryViewController: UIViewController {
             entry.drynessScale = drynessSliderValue
             entry.oilinessScale = oilinessSliderValue
             entry.rednessScale = rednessSliderValue
-            entry.date = NSDate()
+            entry.date = Date()
             entry.routineStreak = routineStreakCounter
             entry.isEmpty = false
             entry.name = entries.last!.name
@@ -174,10 +174,10 @@ class AddDiaryEntryViewController: UIViewController {
             pEntry.oilinessScale = oilinessSliderValue
             pEntry.rednessScale = rednessSliderValue
             pEntry.isEmpty = false
-            pEntry.date = NSDate()
+            pEntry.date = Date()
             pEntry.uploadEntry()
             
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
       }
         else if entries.count == 0 {
@@ -187,9 +187,9 @@ class AddDiaryEntryViewController: UIViewController {
             entry.drynessScale = drynessSliderValue
             entry.oilinessScale = oilinessSliderValue
             entry.rednessScale = rednessSliderValue
-            entry.date = NSDate()
+            entry.date = Date()
             entry.routineStreak = routineStreakCounter
-            let realm = RLMRealm.defaultRealm()
+            let realm = RLMRealm.default()
             realm.beginWriteTransaction()
             entry.name = ""
             try! realm.commitWriteTransaction()
@@ -203,11 +203,11 @@ class AddDiaryEntryViewController: UIViewController {
             pEntry.oilinessScale = oilinessSliderValue
             pEntry.rednessScale = rednessSliderValue
             pEntry.isEmpty = false
-            pEntry.date = NSDate()
+            pEntry.date = Date()
             pEntry.uploadEntry()
             
             
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
   }

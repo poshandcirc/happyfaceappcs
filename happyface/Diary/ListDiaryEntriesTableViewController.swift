@@ -23,34 +23,34 @@ class ListDiaryEntriesTableViewController: UITableViewController {
   //      tableView.layer.masksToBounds = true
         entries = RealmHelper.retrieveNonEmptyEntry()
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        tableView.layer.cornerRadius = 10
   //      tableView.layer.masksToBounds = true
         entries = RealmHelper.retrieveNonEmptyEntry()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entries.count
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("diaryEntryCell", forIndexPath: indexPath) as! DiaryEntryCellTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "diaryEntryCell", for: indexPath) as! DiaryEntryCellTableViewCell
         let row = indexPath.row
         let entry = entries[row]
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
         let entryDate = entry.date
-        cell.entryDateLabel.text = formatter.stringFromDate(entryDate)
+        cell.entryDateLabel.text = formatter.string(from: entryDate)
         return cell
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
 //            let entryDate = entries[indexPath.row].date
 //            print("\(entryDate)")
 //            ParseHelper.deleteEntry(entries[indexPath.row].date)
@@ -59,13 +59,13 @@ class ListDiaryEntriesTableViewController: UITableViewController {
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "displayEntry" {
                 print("Table view cell tapped")
                 let indexPath = tableView.indexPathForSelectedRow!
                 let entry = entries[indexPath.row]
-                let entryStatsUIViewController = segue.destinationViewController as! EntryStatsUIViewController
+                let entryStatsUIViewController = segue.destination as! EntryStatsUIViewController
                 entryStatsUIViewController.entry = entry
             }
             else if identifier == "addEntry" {

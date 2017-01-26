@@ -22,18 +22,18 @@ class EntryStatsUIViewController: UIViewController {
  //       self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
     }
     
-    @IBAction func backAction(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+    @IBAction func backAction(_ sender: AnyObject) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let entry = entry {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.LongStyle
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.long
             let entryDate = entry.date
-            let dateString = formatter.stringFromDate(entryDate)
-            timeLabel.text = dateString.uppercaseString
+            let dateString = formatter.string(from: entryDate as Date)
+            timeLabel.text = dateString.uppercased()
             acneStat.text = "\(entry.acneScale)"
             drynessStat.text = "\(entry.drynessScale)"
             oilinessStat.text = "\(entry.oilinessScale)"

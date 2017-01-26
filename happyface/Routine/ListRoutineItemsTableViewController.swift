@@ -27,7 +27,7 @@ class ListRoutineItemsTableViewController: UITableViewController {
         routines = RealmHelper.retrieveCurrentRoutine()
         currentRoutineCount = routines.count
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
  //       tableView.layer.cornerRadius = 10
    //     tableView.layer.masksToBounds = true
@@ -37,23 +37,23 @@ class ListRoutineItemsTableViewController: UITableViewController {
     }
     
     
-    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+    @IBAction func unwindToContainerVC(_ segue: UIStoryboardSegue) {
 
-        let dst: UIViewController = segue.destinationViewController
+        let dst: UIViewController = segue.destination
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.duration = 0.35
         transition.timingFunction = timeFunc
         transition.type = kCATransitionFade
         transition.subtype = kCATransitionFromTop
-        dst.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        dst.navigationController!.view.layer.add(transition, forKey: kCATransition)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routines.count
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
@@ -67,10 +67,10 @@ class ListRoutineItemsTableViewController: UITableViewController {
         }
     } */
     
-override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
         ParseHelper.archiveRoutine(routines[indexPath.row].itemName, currentUse: false)
-        let realm = RLMRealm.defaultRealm()
+        let realm = RLMRealm.default()
         realm.beginWriteTransaction()
         routines[indexPath.row].currentUse = false
             routines = RealmHelper.retrieveCurrentRoutine()
@@ -83,18 +83,18 @@ override func tableView(tableView: UITableView, commitEditingStyle editingStyle:
     } */
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as! RoutineTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! RoutineTableViewCell
         let row = indexPath.row
         let routine = routines[row]
         cell.productNameLabel.text = routine.itemName
         if routine.isPrescription == true {
             cell.prodIcon.image = UIImage(named: "rX")
         }
-        else if cell.productNameLabel.text!.uppercaseString.containsString("EYE") || cell.productNameLabel.text!.uppercaseString.containsString("LASH") {
+        else if cell.productNameLabel.text!.uppercased().contains("EYE") || cell.productNameLabel.text!.uppercased().contains("LASH") {
             cell.prodIcon.image = UIImage(named: "eye")
         }
-        else if cell.productNameLabel.text!.uppercaseString.containsString("LIP") || cell.productNameLabel.text!.uppercaseString.containsString("MOUTH") || cell.productNameLabel.text!.uppercaseString.containsString("BALM") {
+        else if cell.productNameLabel.text!.uppercased().contains("LIP") || cell.productNameLabel.text!.uppercased().contains("MOUTH") || cell.productNameLabel.text!.uppercased().contains("BALM") {
             cell.prodIcon.image = UIImage(named: "lips")
         }
         else if (routine.morningUse == true) && (routine.nightUse == false) {
@@ -136,13 +136,13 @@ override func tableView(tableView: UITableView, commitEditingStyle editingStyle:
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "displayRoutine" {
                 print("Table view cell tapped")
                 let indexPath = tableView.indexPathForSelectedRow!
                 let routine = routines[indexPath.row]
-                let productInfoViewController = segue.destinationViewController as! ProductInfoViewController
+                let productInfoViewController = segue.destination as! ProductInfoViewController
                 productInfoViewController.routine = routine
             }
             else if identifier == "addRoutine" {

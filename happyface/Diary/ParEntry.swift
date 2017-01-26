@@ -18,7 +18,7 @@ class ParEntry: PFObject, PFSubclassing {
     @NSManaged var oilinessScale: Int
     @NSManaged var rednessScale: Int
     @NSManaged var isEmpty: Bool
-    @NSManaged var date: NSDate
+    @NSManaged var date: Date
 
     static func parseClassName() -> String {
         return "ParEntry"
@@ -29,7 +29,7 @@ class ParEntry: PFObject, PFSubclassing {
     }
     
     func uploadEntry() {
-        user = PFUser.currentUser()
+        user = PFUser.current()
         ParseHelper.addEntry(user!, acneScale: self.acneScale, drynessScale: self.drynessScale, oilinessScale: self.oilinessScale, rednessScale: self.rednessScale, date: self.date, isEmpty: self.isEmpty)
     }
     

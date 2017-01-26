@@ -42,10 +42,10 @@ extension Realm {
         /// configuration is explicitly specified (i.e. `Realm()`).
         public static var defaultConfiguration: Configuration {
             get {
-                return fromRLMRealmConfiguration(RLMRealmConfiguration.defaultConfiguration())
+                return fromRLMRealmConfiguration(RLMRealmConfiguration.default())
             }
             set {
-                RLMRealmConfiguration.setDefaultConfiguration(newValue.rlmConfiguration)
+                RLMRealmConfiguration.setDefault(newValue.rlmConfiguration)
             }
         }
 
@@ -64,9 +64,9 @@ extension Realm {
                                                   schema if a migration is required.
         - parameter objectTypes:        The subset of `Object` subclasses persisted in the Realm.
         */
-        public init(fileURL: NSURL? = NSURL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false),
+        public init(fileURL: URL? = URL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false),
             inMemoryIdentifier: String? = nil,
-            encryptionKey: NSData? = nil,
+            encryptionKey: Data? = nil,
             readOnly: Bool = false,
             schemaVersion: UInt64 = 0,
             migrationBlock: MigrationBlock? = nil,
@@ -87,17 +87,17 @@ extension Realm {
         // MARK: Configuration Properties
 
         /// The local URL of the Realm file. Mutually exclusive with `inMemoryIdentifier`.
-        public var fileURL: NSURL? {
+        public var fileURL: URL? {
             set {
                 _inMemoryIdentifier = nil
                 _path = newValue?.path
             }
             get {
-                return _path.map { NSURL(fileURLWithPath: $0) }
+                return _path.map { URL(fileURLWithPath: $0) }
             }
         }
 
-        private var _path: String?
+        fileprivate var _path: String?
 
         /// A string used to identify a particular in-memory Realm. Mutually exclusive with `path`.
         public var inMemoryIdentifier: String? {
@@ -110,10 +110,10 @@ extension Realm {
             }
         }
 
-        private var _inMemoryIdentifier: String? = nil
+        fileprivate var _inMemoryIdentifier: String? = nil
 
         /// A 64-byte key to use to encrypt the data, or `nil` if encryption is not enabled.
-        public var encryptionKey: NSData? = nil
+        public var encryptionKey: Data? = nil
 
         /// Whether the Realm is read-only (must be `true` for read-only files).
         public var readOnly: Bool = false
@@ -145,7 +145,7 @@ extension Realm {
         }
 
         /// A custom schema to use for the Realm.
-        private var customSchema: RLMSchema? = nil
+        fileprivate var customSchema: RLMSchema? = nil
 
         /// If `true`, disables automatic format upgrades when accessing the Realm.
         internal var disableFormatUpgrade: Bool = false
@@ -171,7 +171,7 @@ extension Realm {
             return configuration
         }
 
-        internal static func fromRLMRealmConfiguration(rlmConfiguration: RLMRealmConfiguration) -> Configuration {
+        internal static func fromRLMRealmConfiguration(_ rlmConfiguration: RLMRealmConfiguration) -> Configuration {
             var configuration = Configuration()
             configuration._path = rlmConfiguration.fileURL?.path
             configuration._inMemoryIdentifier = rlmConfiguration.inMemoryIdentifier
